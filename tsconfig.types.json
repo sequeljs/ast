@@ -1,0 +1,11 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "target": "ES2015",
+    "declaration": true,
+    "declarationDir": "./types",
+    "declarationMap": true,
+    "emitDeclarationOnly": true,
+    "module": "ES2015"
+  }
+}
