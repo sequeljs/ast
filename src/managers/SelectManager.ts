@@ -195,7 +195,7 @@ class SelectManager extends TreeManager<SelectStatement> {
 
     if (typeof rel === 'string' || rel instanceof SQLLiteral) {
       rel = new SQLLiteral(rel)
-      if (rel.value.length <= 0) {
+      if (rel.length <= 0) {
         throw new EmptyJoinError()
       }
 

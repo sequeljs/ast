@@ -1,6 +1,5 @@
 import And from '../nodes/And'
 import Between from '../nodes/Between'
-import Concat from '../nodes/Concat'
 import DoesNotMatch from '../nodes/DoesNotMatch'
 import Equality from '../nodes/Equality'
 import GreaterThan from '../nodes/GreaterThan'
@@ -53,10 +52,6 @@ export default abstract class Predications {
 
   protected quotedArray(others: any[]): any[] {
     return others.map((v) => this.quotedNode(v))
-  }
-
-  concat(other: any): Concat {
-    return new Concat(this, other)
   }
 
   doesNotMatch(

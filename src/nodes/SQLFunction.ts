@@ -1,6 +1,7 @@
 import Node from './Node'
 import SQLLiteral from './SQLLiteral'
 
+import type ConcatPredication from '../mixins/ConcatPredication'
 import type OrderPredications from '../mixins/OrderPredications'
 import type Predications from '../mixins/Predications'
 import type WhenPredication from '../mixins/WhenPredication'
@@ -31,7 +32,8 @@ class SQLFunction extends Node {
 }
 
 interface SQLFunction
-  extends OrderPredications,
+  extends ConcatPredication,
+    OrderPredications,
     Predications,
     WhenPredication,
     WindowPredication {}
