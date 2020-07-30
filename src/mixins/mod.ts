@@ -1,4 +1,5 @@
 export { default as AliasPredication } from './AliasPredication'
+export { default as ConcatPredication } from './ConcatPredication'
 export { default as Expressions } from './Expressions'
 export { default as FactoryMethods } from './FactoryMethods'
 export { default as Math } from './Math'

@@ -1,6 +1,7 @@
 import Unary from './Unary'
 
 import type AliasPredication from '../mixins/AliasPredication'
+import type ConcatPredication from '../mixins/ConcatPredication'
 import type Predications from '../mixins/Predications'
 import type WhenPredication from '../mixins/WhenPredication'
 
@@ -14,6 +15,10 @@ class Extract extends Unary {
   }
 }
 
-interface Extract extends AliasPredication, Predications, WhenPredication {}
+interface Extract
+  extends AliasPredication,
+    ConcatPredication,
+    Predications,
+    WhenPredication {}
 
 export default Extract

@@ -1,6 +1,7 @@
 import Binary from './Binary'
 
 import type AliasPredication from '../mixins/AliasPredication'
+import type ConcatPredication from '../mixins/ConcatPredication'
 import type Expressions from '../mixins/Expressions'
 import type Math from '../mixins/Math'
 import type OrderPredications from '../mixins/OrderPredications'
@@ -19,6 +20,7 @@ class InfixOperation extends Binary {
 
 interface InfixOperation
   extends AliasPredication,
+    ConcatPredication,
     Expressions,
     Math,
     OrderPredications,

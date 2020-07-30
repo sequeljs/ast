@@ -4,6 +4,7 @@ import When from './When'
 import buildQuoted from './buildQuoted'
 
 import type AliasPredication from '../mixins/AliasPredication'
+import type ConcatPredication from '../mixins/ConcatPredication'
 import type OrderPredications from '../mixins/OrderPredications'
 import type Predications from '../mixins/Predications'
 
@@ -40,6 +41,10 @@ class Case extends Node {
   }
 }
 
-interface Case extends AliasPredication, OrderPredications, Predications {}
+interface Case
+  extends AliasPredication,
+    ConcatPredication,
+    OrderPredications,
+    Predications {}
 
 export default Case

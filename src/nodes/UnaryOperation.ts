@@ -3,6 +3,7 @@ import Unary from './Unary'
 import type Attribute from '../attributes/Attribute'
 
 import type AliasPredication from '../mixins/AliasPredication'
+import type ConcatPredication from '../mixins/ConcatPredication'
 import type Expressions from '../mixins/Expressions'
 import type Math from '../mixins/Math'
 import type OrderPredications from '../mixins/OrderPredications'
@@ -21,6 +22,7 @@ class UnaryOperation extends Unary {
 
 interface UnaryOperation
   extends AliasPredication,
+    ConcatPredication,
     Expressions,
     Math,
     OrderPredications,

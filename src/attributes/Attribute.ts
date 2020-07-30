@@ -1,6 +1,7 @@
 import type Relation from '../interfaces/Relation'
 
 import type AliasPredication from '../mixins/AliasPredication'
+import type ConcatPredication from '../mixins/ConcatPredication'
 import type Expressions from '../mixins/Expressions'
 import type Math from '../mixins/Math'
 import type OrderPredications from '../mixins/OrderPredications'
@@ -37,6 +38,7 @@ class Attribute {
 
 interface Attribute
   extends AliasPredication,
+    ConcatPredication,
     Expressions,
     Math,
     OrderPredications,
