@@ -23,7 +23,7 @@ our
 
 ## License
 
-[MIT](https://github.com/sequeljs/ast/blob/main/LICENSE.md)
+[MIT](https://github.com/sequeljs/ast/blob/main/LICENSE)
 
 ## Inspiration
 
