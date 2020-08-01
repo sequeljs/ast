@@ -26,6 +26,7 @@ jobs:
       - name: Run Super-Linter
         uses: github/super-linter@v3.3.2
         env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           VALIDATE_ANSIBLE: false
           VALIDATE_BASH: false
           VALIDATE_COFFEE: false
