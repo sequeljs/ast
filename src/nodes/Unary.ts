@@ -1,8 +1,10 @@
-import Node from './Node'
+import NodeExpression from './NodeExpression'
+
+import type AliasPredication from '../mixins/AliasPredication'
 
 import type Visitable from '../visitors/Visitable'
 
-export default class Unary<T = Visitable> extends Node {
+class Unary<T = Visitable> extends NodeExpression {
   public expr: T
 
   get value(): T {
@@ -15,3 +17,7 @@ export default class Unary<T = Visitable> extends Node {
     this.expr = expr
   }
 }
+
+interface Unary extends AliasPredication {}
+
+export default Unary

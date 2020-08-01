@@ -17,7 +17,10 @@ function buildQuoted(other: SelectManager, attribute: any): SelectManager
 function buildQuoted(other: Table, attribute: any): Table
 function buildQuoted(other: any, attribute: Attribute): Casted
 function buildQuoted(other: any): Quoted
-function buildQuoted(other: any, attribute: any = null): any {
+function buildQuoted(
+  other: any,
+  attribute: any = null,
+): Attribute | Casted | Node | Quoted | SQLLiteral | SelectManager | Table {
   if (
     other instanceof Attribute ||
     other instanceof Node ||

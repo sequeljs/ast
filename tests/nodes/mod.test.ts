@@ -17,6 +17,7 @@ import BitwiseShiftRight from '../../src/nodes/BitwiseShiftRight'
 import BitwiseXor from '../../src/nodes/BitwiseXor'
 import Case from '../../src/nodes/Case'
 import Casted from '../../src/nodes/Casted'
+import Comment from '../../src/nodes/Comment'
 import Concat from '../../src/nodes/Concat'
 import Count from '../../src/nodes/Count'
 import Cube from '../../src/nodes/Cube'
@@ -46,8 +47,11 @@ import InfixOperation from '../../src/nodes/InfixOperation'
 import InnerJoin from '../../src/nodes/InnerJoin'
 import InsertStatement from '../../src/nodes/InsertStatement'
 import Intersect from '../../src/nodes/Intersect'
+import IsDistinctFrom from '../../src/nodes/IsDistinctFrom'
+import IsNotDistinctFrom from '../../src/nodes/IsNotDistinctFrom'
 import Join from '../../src/nodes/Join'
 import JoinSource from '../../src/nodes/JoinSource'
+import Lateral from '../../src/nodes/Lateral'
 import LessThan from '../../src/nodes/LessThan'
 import LessThanOrEqual from '../../src/nodes/LessThanOrEqual'
 import Limit from '../../src/nodes/Limit'
@@ -59,12 +63,14 @@ import Multiplication from '../../src/nodes/Multiplication'
 import NamedSQLFunction from '../../src/nodes/NamedSQLFunction'
 import NamedWindow from '../../src/nodes/NamedWindow'
 import Node from '../../src/nodes/Node'
+import NodeExpression from '../../src/nodes/NodeExpression'
 import Not from '../../src/nodes/Not'
 import NotEqual from '../../src/nodes/NotEqual'
 import NotIn from '../../src/nodes/NotIn'
 import NotRegexp from '../../src/nodes/NotRegexp'
 import Offset from '../../src/nodes/Offset'
 import On from '../../src/nodes/On'
+import OptimizerHints from '../../src/nodes/OptimizerHints'
 import Or from '../../src/nodes/Or'
 import Ordering from '../../src/nodes/Ordering'
 import OuterJoin from '../../src/nodes/OuterJoin'
@@ -84,7 +90,6 @@ import StringJoin from '../../src/nodes/StringJoin'
 import Subtraction from '../../src/nodes/Subtraction'
 import Sum from '../../src/nodes/Sum'
 import TableAlias from '../../src/nodes/TableAlias'
-import Top from '../../src/nodes/Top'
 import True from '../../src/nodes/True'
 import Unary from '../../src/nodes/Unary'
 import UnaryOperation from '../../src/nodes/UnaryOperation'
@@ -92,7 +97,6 @@ import Union from '../../src/nodes/Union'
 import UnionAll from '../../src/nodes/UnionAll'
 import UnqualifiedColumn from '../../src/nodes/UnqualifiedColumn'
 import UpdateStatement from '../../src/nodes/UpdateStatement'
-import Values from '../../src/nodes/Values'
 import ValuesList from '../../src/nodes/ValuesList'
 import When from '../../src/nodes/When'
 import Window from '../../src/nodes/Window'
@@ -118,6 +122,7 @@ test('exports from module', () => {
   expect(mod.BitwiseXor).toStrictEqual(BitwiseXor)
   expect(mod.Case).toStrictEqual(Case)
   expect(mod.Casted).toStrictEqual(Casted)
+  expect(mod.Comment).toStrictEqual(Comment)
   expect(mod.Concat).toStrictEqual(Concat)
   expect(mod.Count).toStrictEqual(Count)
   expect(mod.Cube).toStrictEqual(Cube)
@@ -147,8 +152,11 @@ test('exports from module', () => {
   expect(mod.InnerJoin).toStrictEqual(InnerJoin)
   expect(mod.InsertStatement).toStrictEqual(InsertStatement)
   expect(mod.Intersect).toStrictEqual(Intersect)
+  expect(mod.IsDistinctFrom).toStrictEqual(IsDistinctFrom)
+  expect(mod.IsNotDistinctFrom).toStrictEqual(IsNotDistinctFrom)
   expect(mod.Join).toStrictEqual(Join)
   expect(mod.JoinSource).toStrictEqual(JoinSource)
+  expect(mod.Lateral).toStrictEqual(Lateral)
   expect(mod.LessThan).toStrictEqual(LessThan)
   expect(mod.LessThanOrEqual).toStrictEqual(LessThanOrEqual)
   expect(mod.Limit).toStrictEqual(Limit)
@@ -160,12 +168,14 @@ test('exports from module', () => {
   expect(mod.NamedSQLFunction).toStrictEqual(NamedSQLFunction)
   expect(mod.NamedWindow).toStrictEqual(NamedWindow)
   expect(mod.Node).toStrictEqual(Node)
+  expect(mod.NodeExpression).toStrictEqual(NodeExpression)
   expect(mod.Not).toStrictEqual(Not)
   expect(mod.NotEqual).toStrictEqual(NotEqual)
   expect(mod.NotIn).toStrictEqual(NotIn)
   expect(mod.NotRegexp).toStrictEqual(NotRegexp)
   expect(mod.Offset).toStrictEqual(Offset)
   expect(mod.On).toStrictEqual(On)
+  expect(mod.OptimizerHints).toStrictEqual(OptimizerHints)
   expect(mod.Or).toStrictEqual(Or)
   expect(mod.Ordering).toStrictEqual(Ordering)
   expect(mod.OuterJoin).toStrictEqual(OuterJoin)
@@ -185,7 +195,6 @@ test('exports from module', () => {
   expect(mod.Subtraction).toStrictEqual(Subtraction)
   expect(mod.Sum).toStrictEqual(Sum)
   expect(mod.TableAlias).toStrictEqual(TableAlias)
-  expect(mod.Top).toStrictEqual(Top)
   expect(mod.True).toStrictEqual(True)
   expect(mod.Unary).toStrictEqual(Unary)
   expect(mod.UnaryOperation).toStrictEqual(UnaryOperation)
@@ -193,7 +202,6 @@ test('exports from module', () => {
   expect(mod.UnionAll).toStrictEqual(UnionAll)
   expect(mod.UnqualifiedColumn).toStrictEqual(UnqualifiedColumn)
   expect(mod.UpdateStatement).toStrictEqual(UpdateStatement)
-  expect(mod.Values).toStrictEqual(Values)
   expect(mod.ValuesList).toStrictEqual(ValuesList)
   expect(mod.When).toStrictEqual(When)
   expect(mod.Window).toStrictEqual(Window)

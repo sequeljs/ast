@@ -1,8 +1,10 @@
-import Node from './Node'
+import NodeExpression from './NodeExpression'
 
 import type Attribute from '../attributes/Attribute'
 
-export default class Casted extends Node {
+import type AliasPredication from '../mixins/AliasPredication'
+
+class Casted extends NodeExpression {
   public readonly attribute: string | Attribute
 
   public readonly value: any
@@ -14,3 +16,7 @@ export default class Casted extends Node {
     this.value = value
   }
 }
+
+interface Casted extends AliasPredication {}
+
+export default Casted

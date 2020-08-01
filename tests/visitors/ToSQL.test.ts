@@ -27,6 +27,8 @@ import DistinctOn from '../../src/nodes/DistinctOn'
 import Equality from '../../src/nodes/Equality'
 import Grouping from '../../src/nodes/Grouping'
 import InfixOperation from '../../src/nodes/InfixOperation'
+import IsDistinctFrom from '../../src/nodes/IsDistinctFrom'
+import IsNotDistinctFrom from '../../src/nodes/IsNotDistinctFrom'
 import Limit from '../../src/nodes/Limit'
 import Max from '../../src/nodes/Max'
 import Min from '../../src/nodes/Min'
@@ -45,7 +47,7 @@ import Sum from '../../src/nodes/Sum'
 import TableAlias from '../../src/nodes/TableAlias'
 import UnaryOperation from '../../src/nodes/UnaryOperation'
 import UnqualifiedColumn from '../../src/nodes/UnqualifiedColumn'
-import Values from '../../src/nodes/Values'
+import ValuesList from '../../src/nodes/ValuesList'
 import buildQuoted from '../../src/nodes/buildQuoted'
 
 import ToSQL from '../../src/visitors/ToSQL'
@@ -97,7 +99,7 @@ describe('ToSQL', () => {
 
   test('does not quote BindParams used as part of a Values', () => {
     const bp = new BindParam(1)
-    const values = new Values([bp])
+    const values = new ValuesList([[bp]])
 
     expect(compile(values)).toStrictEqual(`VALUES (?)`)
   })
@@ -234,6 +236,58 @@ describe('ToSQL', () => {
       const node = new NotEqual(scope.table.get('name'), val)
 
       expect(compile(node)).toStrictEqual(`"users"."name" IS NOT NULL`)
+    })
+  })
+
+  describe('IsDistinctFrom', () => {
+    test('should handle column names on both sides', () => {
+      const node = new Table('users')
+        .get('first_name')
+        .isDistinctFrom(new Table('users').get('last_name'))
+
+      expect(compile(node)).toStrictEqual(
+        `CASE WHEN "users"."first_name" = "users"."last_name" OR ("users"."first_name" IS NULL AND "users"."last_name" IS NULL) THEN 0 ELSE 1 END = 1`,
+      )
+    })
+
+    test('should handle null', () => {
+      const node = new IsDistinctFrom(
+        scope.table.get('name'),
+        buildQuoted(null, scope.table.get('active')),
+      )
+
+      expect(compile(node)).toStrictEqual(`"users"."name" IS NOT NULL`)
+    })
+  })
+
+  describe('IsNotDistinctFrom', () => {
+    test('should construct a valid generic SQL statement', () => {
+      const node = new Table('users')
+        .get('name')
+        .isNotDistinctFrom('Aaron Patterson')
+
+      expect(compile(node)).toStrictEqual(
+        `CASE WHEN "users"."name" = 'Aaron Patterson' OR ("users"."name" IS NULL AND 'Aaron Patterson' IS NULL) THEN 0 ELSE 1 END = 0`,
+      )
+    })
+
+    test('should handle column names on both sides', () => {
+      const node = new Table('users')
+        .get('first_name')
+        .isNotDistinctFrom(new Table('users').get('last_name'))
+
+      expect(compile(node)).toStrictEqual(
+        `CASE WHEN "users"."first_name" = "users"."last_name" OR ("users"."first_name" IS NULL AND "users"."last_name" IS NULL) THEN 0 ELSE 1 END = 0`,
+      )
+    })
+
+    test('should handle null', () => {
+      const node = new IsNotDistinctFrom(
+        scope.table.get('name'),
+        buildQuoted(null, scope.table.get('active')),
+      )
+
+      expect(compile(node)).toStrictEqual(`"users"."name" IS NULL`)
     })
   })
 
@@ -447,7 +501,13 @@ describe('ToSQL', () => {
   })
 
   describe('Ordering', () => {
-    test('should know how to visit', () => {
+    test('should know how to visit Ascending', () => {
+      const node = scope.attribute.asc()
+
+      expect(compile(node)).toStrictEqual(`"users"."id" ASC`)
+    })
+
+    test('should know how to visit Descending', () => {
       const node = scope.attribute.desc()
 
       expect(compile(node)).toStrictEqual(`"users"."id" DESC`)
@@ -467,13 +527,13 @@ describe('ToSQL', () => {
       expect(compile(node)).toStrictEqual(`1 = 0`)
     })
 
-    test('can handle two dot ranges', () => {
+    test('can handle inclusive ranges', () => {
       const node = scope.attribute.between(1, 3)
 
       expect(compile(node)).toStrictEqual(`"users"."id" BETWEEN 1 AND 3`)
     })
 
-    test('can handle three dot ranges', () => {
+    test('can handle non-inclusive ranges', () => {
       const node = scope.attribute.between(1, 3, false)
 
       expect(compile(node)).toStrictEqual(
@@ -504,6 +564,14 @@ describe('ToSQL', () => {
 
       expect(compile(node)).toStrictEqual(
         `"users"."id" IN (SELECT id FROM "users" WHERE "users"."name" = 'Aaron')`,
+      )
+    })
+
+    test('can handle inClauseLength', () => {
+      const node = scope.attribute.inVal([1, 2, 3, 4, 5, 6])
+
+      expect(compile(node)).toStrictEqual(
+        `("users"."id" IN (1, 2, 3) OR "users"."id" IN (4, 5, 6))`,
       )
     })
   })
@@ -666,7 +734,7 @@ describe('ToSQL', () => {
       expect(compile(node)).toStrictEqual(`1 = 1`)
     })
 
-    test('can handle two dot ranges', () => {
+    test('can handle inclusive ranges', () => {
       const node = scope.attribute.notBetween(1, 3)
 
       expect(compile(node)).toStrictEqual(
@@ -674,7 +742,7 @@ describe('ToSQL', () => {
       )
     })
 
-    test('can handle three dot ranges', () => {
+    test('can handle non-inclusive ranges', () => {
       const node = scope.attribute.notBetween(1, 3, false)
 
       expect(compile(node)).toStrictEqual(
@@ -706,6 +774,14 @@ describe('ToSQL', () => {
 
       expect(compile(node)).toStrictEqual(
         `"users"."id" NOT IN (SELECT id FROM "users" WHERE "users"."name" = 'Aaron')`,
+      )
+    })
+
+    test('can handle inClauseLength', () => {
+      const node = scope.attribute.notInVal([1, 2, 3, 4, 5, 6])
+
+      expect(compile(node)).toStrictEqual(
+        `("users"."id" NOT IN (1, 2, 3) AND "users"."id" NOT IN (4, 5, 6))`,
       )
     })
   })

@@ -1,6 +1,8 @@
-import Node from './Node'
+import NodeExpression from './NodeExpression'
 
-export default class Binary<L = any, R = any> extends Node {
+import type AliasPredication from '../mixins/AliasPredication'
+
+class Binary<L = any, R = any> extends NodeExpression {
   public left: L
 
   public right: R
@@ -12,3 +14,7 @@ export default class Binary<L = any, R = any> extends Node {
     this.right = right
   }
 }
+
+interface Binary extends AliasPredication {}
+
+export default Binary

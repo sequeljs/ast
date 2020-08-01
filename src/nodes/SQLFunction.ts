@@ -1,13 +1,9 @@
-import Node from './Node'
+import NodeExpression from './NodeExpression'
 import SQLLiteral from './SQLLiteral'
 
-import type ConcatPredication from '../mixins/ConcatPredication'
-import type OrderPredications from '../mixins/OrderPredications'
-import type Predications from '../mixins/Predications'
-import type WhenPredication from '../mixins/WhenPredication'
 import type WindowPredication from '../mixins/WindowPredication'
 
-class SQLFunction extends Node {
+class SQLFunction extends NodeExpression {
   public alias: SQLLiteral | null = null
 
   public distinct: boolean | null
@@ -31,11 +27,6 @@ class SQLFunction extends Node {
   }
 }
 
-interface SQLFunction
-  extends ConcatPredication,
-    OrderPredications,
-    Predications,
-    WhenPredication,
-    WindowPredication {}
+interface SQLFunction extends WindowPredication {}
 
 export default SQLFunction

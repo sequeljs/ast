@@ -2,15 +2,7 @@ import Unary from './Unary'
 
 import type Attribute from '../attributes/Attribute'
 
-import type AliasPredication from '../mixins/AliasPredication'
-import type ConcatPredication from '../mixins/ConcatPredication'
-import type Expressions from '../mixins/Expressions'
-import type Math from '../mixins/Math'
-import type OrderPredications from '../mixins/OrderPredications'
-import type Predications from '../mixins/Predications'
-import type WhenPredication from '../mixins/WhenPredication'
-
-class UnaryOperation extends Unary {
+export default class UnaryOperation extends Unary {
   public readonly operator: string
 
   constructor(operator: string, operand: number | string | Attribute) {
@@ -19,14 +11,3 @@ class UnaryOperation extends Unary {
     this.operator = operator
   }
 }
-
-interface UnaryOperation
-  extends AliasPredication,
-    ConcatPredication,
-    Expressions,
-    Math,
-    OrderPredications,
-    Predications,
-    WhenPredication {}
-
-export default UnaryOperation

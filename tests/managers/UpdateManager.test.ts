@@ -126,6 +126,22 @@ describe('UpdateManager', () => {
 
       expect(um.toSQL()).toStrictEqual(`UPDATE "users" INNER JOIN "posts"`)
     })
+
+    test('generates an update statement with key and joins', () => {
+      const um = new UpdateManager()
+
+      const table = new Table('users')
+      const joinSource = new JoinSource(table, [
+        table.createJoin(new Table('posts')),
+      ])
+
+      um.key = 'id'
+      um.table(joinSource)
+
+      expect(um.toSQL()).toStrictEqual(
+        `UPDATE "users" WHERE 'id' IN (SELECT 'id' FROM "users" INNER JOIN "posts")`,
+      )
+    })
   })
 
   describe('where', () => {

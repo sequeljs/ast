@@ -6,6 +6,7 @@ import And from '../../src/nodes/And'
 import Ascending from '../../src/nodes/Ascending'
 import Avg from '../../src/nodes/Avg'
 import Between from '../../src/nodes/Between'
+import BindParam from '../../src/nodes/BindParam'
 import Casted from '../../src/nodes/Casted'
 import Count from '../../src/nodes/Count'
 import Descending from '../../src/nodes/Descending'
@@ -26,12 +27,15 @@ import Or from '../../src/nodes/Or'
 import Quoted from '../../src/nodes/Quoted'
 import SQLLiteral from '../../src/nodes/SQLLiteral'
 import Sum from '../../src/nodes/Sum'
+import TableAlias from '../../src/nodes/TableAlias'
 import buildQuoted from '../../src/nodes/buildQuoted'
 
 import Table from '../../src/Table'
 
 import type TypeCaster from '../../src/interfaces/TypeCaster'
-import { TableAlias } from '../../src/nodes/mod'
+
+import UnboundableBindParam from '../support/UnboundableBindParam'
+import UnboundableQuoted from '../support/UnboundableQuoted'
 
 function formatDateToSQL(date: Date) {
   return date.toISOString().replace(/T/, ' ').replace(/\..+/, '')
@@ -72,6 +76,17 @@ describe('attribute', () => {
 
       expect(mgr.toSQL()).toStrictEqual(
         `SELECT "users"."id" FROM "users" WHERE "users"."id" IS NOT NULL`,
+      )
+    })
+
+    test('should handle an Unboundable', () => {
+      const relation = new Table('users')
+
+      const mgr = relation.project(relation.get('id'))
+      mgr.where(relation.get('id').notEq(new UnboundableQuoted(1)))
+
+      expect(mgr.toSQL()).toStrictEqual(
+        `SELECT "users"."id" FROM "users" WHERE 1 = 1`,
       )
     })
   })
@@ -519,6 +534,17 @@ describe('attribute', () => {
         `SELECT "users"."id" FROM "users" WHERE "users"."id" IS NULL`,
       )
     })
+
+    test('should handle an Unboundable', () => {
+      const relation = new Table('users')
+
+      const mgr = relation.project(relation.get('id'))
+      mgr.where(relation.get('id').eq(new UnboundableQuoted(1)))
+
+      expect(mgr.toSQL()).toStrictEqual(
+        `SELECT "users"."id" FROM "users" WHERE 1 = 0`,
+      )
+    })
   })
 
   describe('eqAny', () => {
@@ -705,7 +731,7 @@ describe('attribute', () => {
     })
   })
 
-  describe('with a range', () => {
+  describe('between', () => {
     test('can be constructed with a standard range', () => {
       const relation = new Table('users')
 
@@ -831,6 +857,45 @@ describe('attribute', () => {
         ]),
       )
     })
+
+    test('can be constructed with an unboundable range', () => {
+      const relation = new Table('users')
+
+      const attribute = new Attribute(relation, 'id')
+
+      const node = attribute.between(
+        new UnboundableQuoted(0),
+        new UnboundableQuoted(3),
+      )
+
+      expect(node).toStrictEqual(new In(attribute, []))
+    })
+
+    test('can be constructed with a BindParam Infinity range', () => {
+      const relation = new Table('users')
+
+      const attribute = new Attribute(relation, 'id')
+
+      const node = attribute.between(
+        new BindParam(Infinity),
+        new BindParam(-Infinity),
+      )
+
+      expect(node).toStrictEqual(new NotIn(attribute, []))
+    })
+
+    test('can be constructed with a Unboundable BindParam range', () => {
+      const relation = new Table('users')
+
+      const attribute = new Attribute(relation, 'id')
+
+      const node = attribute.between(
+        new UnboundableBindParam(new UnboundableQuoted(0)),
+        new UnboundableBindParam(new UnboundableQuoted(3)),
+      )
+
+      expect(node).toStrictEqual(new In(attribute, []))
+    })
   })
 
   describe('in', () => {
@@ -937,7 +1002,7 @@ describe('attribute', () => {
     })
   })
 
-  describe('with a range', () => {
+  describe('notBetween', () => {
     test('can be constructed with a standard range', () => {
       const relation = new Table('users')
 
@@ -967,6 +1032,22 @@ describe('attribute', () => {
       )
     })
 
+    test('can be constructed with a quoted range starting from -Infinity', () => {
+      const relation = new Table('users')
+
+      const attribute = new Attribute(relation, 'id')
+
+      const range = quotedRange(-Infinity, 3, false)
+
+      const node = attribute.notBetween(
+        range.begin,
+        range.end,
+        !range.excludeEnd,
+      )
+
+      expect(node).toStrictEqual(new GreaterThan(attribute, new Quoted(3)))
+    })
+
     test('can be constructed with an exclusive range starting from -Infinity', () => {
       const relation = new Table('users')
 
@@ -979,12 +1060,46 @@ describe('attribute', () => {
       )
     })
 
+    test('can be constructed with a quoted exclusive range starting from -Infinity', () => {
+      const relation = new Table('users')
+
+      const attribute = new Attribute(relation, 'id')
+
+      const range = quotedRange(-Infinity, 3, true)
+
+      const node = attribute.notBetween(
+        range.begin,
+        range.end,
+        !range.excludeEnd,
+      )
+
+      expect(node).toStrictEqual(
+        new GreaterThanOrEqual(attribute, new Quoted(3)),
+      )
+    })
+
     test('can be constructed with an infinite range', () => {
       const relation = new Table('users')
 
       const attribute = new Attribute(relation, 'id')
 
       const node = attribute.notBetween(-Infinity, Infinity)
+
+      expect(node).toStrictEqual(new In(attribute, []))
+    })
+
+    test('can be constructed with a quoted infinite range', () => {
+      const relation = new Table('users')
+
+      const attribute = new Attribute(relation, 'id')
+
+      const range = quotedRange(-Infinity, Infinity, false)
+
+      const node = attribute.notBetween(
+        range.begin,
+        range.end,
+        !range.excludeEnd,
+      )
 
       expect(node).toStrictEqual(new In(attribute, []))
     })
@@ -999,6 +1114,22 @@ describe('attribute', () => {
       expect(node).toStrictEqual(
         new LessThan(attribute, new Casted(0, attribute)),
       )
+    })
+
+    test('can be constructed with a quoted range ending at Infinity', () => {
+      const relation = new Table('users')
+
+      const attribute = new Attribute(relation, 'id')
+
+      const range = quotedRange(0, Infinity, false)
+
+      const node = attribute.notBetween(
+        range.begin,
+        range.end,
+        !range.excludeEnd,
+      )
+
+      expect(node).toStrictEqual(new LessThan(attribute, new Quoted(0)))
     })
 
     test('can be constructed with an exclusive range', () => {
@@ -1016,6 +1147,32 @@ describe('attribute', () => {
           ),
         ),
       )
+    })
+
+    test('can be constructed with an unboundable range', () => {
+      const relation = new Table('users')
+
+      const attribute = new Attribute(relation, 'id')
+
+      const node = attribute.notBetween(
+        new UnboundableQuoted(0),
+        new UnboundableQuoted(3),
+      )
+
+      expect(node).toStrictEqual(new NotIn(attribute, []))
+    })
+
+    test('can be constructed with a BindParam Infinity range', () => {
+      const relation = new Table('users')
+
+      const attribute = new Attribute(relation, 'id')
+
+      const node = attribute.notBetween(
+        new BindParam(Infinity),
+        new BindParam(-Infinity),
+      )
+
+      expect(node).toStrictEqual(new In(attribute, []))
     })
   })
 

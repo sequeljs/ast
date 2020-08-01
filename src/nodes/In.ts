@@ -1,3 +1,5 @@
 import Equality from './Equality'
 
-export default class In extends Equality {}
+import type Visitable from '../visitors/Visitable'
+
+export default class In extends Equality<any, Visitable | Visitable[]> {}

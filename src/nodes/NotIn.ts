@@ -1,3 +1,5 @@
 import Binary from './Binary'
 
-export default class NotIn extends Binary {}
+import type Visitable from '../visitors/Visitable'
+
+export default class NotIn extends Binary<any, Visitable | Visitable[]> {}

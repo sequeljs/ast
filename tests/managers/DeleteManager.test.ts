@@ -31,8 +31,9 @@ describe('DeleteManager', () => {
       const dm = new DeleteManager()
       dm.take(10)
       dm.from(table)
+      dm.key = table.get('id')
 
-      expect(dm.toSQL()).toStrictEqual(`DELETE FROM "users" LIMIT 10`)
+      expect(dm.toSQL()).toMatch(`LIMIT 10`)
     })
 
     test('noops on null', () => {
@@ -65,6 +66,29 @@ describe('DeleteManager', () => {
       const dm = new DeleteManager()
 
       expect(dm.where(table.get('id').eq(10))).toStrictEqual(dm)
+    })
+  })
+
+  describe('offset', () => {
+    test('uses offset', () => {
+      const table = new Table('users')
+
+      const dm = new DeleteManager()
+      dm.offset(10)
+      dm.from(table)
+      dm.key = table.get('id')
+
+      expect(dm.toSQL()).toMatch(`OFFSET 10`)
+    })
+
+    test('noops on null', () => {
+      const table = new Table('users')
+
+      const dm = new DeleteManager()
+      dm.offset(null)
+      dm.from(table)
+
+      expect(dm.toSQL()).toStrictEqual(`DELETE FROM "users"`)
     })
   })
 })

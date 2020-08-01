@@ -1,13 +1,15 @@
 import InsertStatement from '../nodes/InsertStatement'
 import SQLLiteral from '../nodes/SQLLiteral'
-import Values from '../nodes/Values'
 import ValuesList from '../nodes/ValuesList'
 
 import TreeManager from './TreeManager'
 
 import type Table from '../Table'
 
-export default class InsertManager extends TreeManager<InsertStatement> {
+export default class InsertManager extends TreeManager<
+  InsertManager,
+  InsertStatement
+> {
   protected ctx: InsertStatement
 
   get columns(): InsertManager['ctx']['columns'] {
@@ -24,8 +26,8 @@ export default class InsertManager extends TreeManager<InsertStatement> {
     this.ctx = this.ast
   }
 
-  createValues(values: any[], columns: any[]): Values {
-    return new Values(values, columns)
+  createValues(values: any): ValuesList {
+    return new ValuesList([values])
   }
 
   createValuesList(rows: any[]): ValuesList {
@@ -50,7 +52,7 @@ export default class InsertManager extends TreeManager<InsertStatement> {
         values.push(value)
       })
 
-      this.ast.values = this.createValues(values, this.ast.columns)
+      this.ast.values = this.createValues(values)
     }
 
     return this

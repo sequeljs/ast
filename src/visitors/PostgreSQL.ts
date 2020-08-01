@@ -1,16 +1,6 @@
+import SelectStatement from '../nodes/SelectStatement'
+
 import ToSQL from './ToSQL'
-import {
-  CUBE,
-  DISTINCT_ON,
-  ESCAPE,
-  GROUPING_SET,
-  ILIKE,
-  LIKE,
-  NOT_ILIKE,
-  NOT_LIKE,
-  ROLLUP,
-  SPACE,
-} from './constants'
 
 import type Collector from '../collectors/Collector'
 
@@ -20,8 +10,13 @@ import type DistinctOn from '../nodes/DistinctOn'
 import type DoesNotMatch from '../nodes/DoesNotMatch'
 import type GroupingElement from '../nodes/GroupingElement'
 import type GroupingSet from '../nodes/GroupingSet'
+import type IsDistinctFrom from '../nodes/IsDistinctFrom'
+import type IsNotDistinctFrom from '../nodes/IsNotDistinctFrom'
+import type Lateral from '../nodes/Lateral'
 import type Matches from '../nodes/Matches'
 import type NotRegexp from '../nodes/NotRegexp'
+import type NullsFirst from '../nodes/NullsFirst'
+import type NullsLast from '../nodes/NullsLast'
 import type Regexp from '../nodes/Regexp'
 import type RollUp from '../nodes/RollUp'
 
@@ -33,10 +28,22 @@ export default class PostgreSQL extends ToSQL {
     let collector = col
 
     if (Array.isArray(thing.expr)) {
-      collector.append('(')
-      collector.append(SPACE)
+      collector.append('( ')
       collector = this.visit(thing.expr, collector)
-      collector.append(SPACE)
+      collector.append(' )')
+    } else {
+      collector = this.visit(thing.expr, collector)
+    }
+
+    return collector
+  }
+
+  private groupingParentheses(thing: Lateral, col: Collector): Collector {
+    let collector = col
+
+    if (thing.expr instanceof SelectStatement) {
+      collector.append('(')
+      collector = this.visit(thing.expr, collector)
       collector.append(')')
     } else {
       collector = this.visit(thing.expr, collector)
@@ -56,7 +63,7 @@ export default class PostgreSQL extends ToSQL {
   protected visitCube(thing: Cube, col: Collector): Collector {
     let collector = col
 
-    collector.append(CUBE)
+    collector.append('CUBE')
 
     collector = this.groupingArrayOrGroupingElement(thing, collector)
 
@@ -66,13 +73,9 @@ export default class PostgreSQL extends ToSQL {
   protected visitDistinctOn(thing: DistinctOn, col: Collector): Collector {
     let collector = col
 
-    collector.append(DISTINCT_ON)
-    collector.append(SPACE)
-    collector.append('(')
-    collector.append(SPACE)
+    collector.append('DISTINCT ON ( ')
     collector = this.visit(thing.expr, collector)
-    collector.append(SPACE)
-    collector.append(')')
+    collector.append(' )')
 
     return collector
   }
@@ -80,12 +83,12 @@ export default class PostgreSQL extends ToSQL {
   protected visitDoesNotMatch(thing: DoesNotMatch, col: Collector): Collector {
     let collector = col
 
-    const op = thing.caseSensitive ? NOT_LIKE : NOT_ILIKE
+    const op = thing.caseSensitive ? ' NOT LIKE ' : ' NOT ILIKE '
 
     collector = this.infixValue(thing, collector, op)
 
     if (thing.escape) {
-      collector.append(ESCAPE)
+      collector.append(' ESCAPE ')
 
       collector = this.visit(thing.escape, collector)
     }
@@ -99,11 +102,9 @@ export default class PostgreSQL extends ToSQL {
   ): Collector {
     let collector = col
 
-    collector.append('(')
-    collector.append(SPACE)
+    collector.append('( ')
     collector = this.visit(thing.expr, collector)
-    collector.append(SPACE)
-    collector.append(')')
+    collector.append(' )')
 
     return collector
   }
@@ -111,9 +112,45 @@ export default class PostgreSQL extends ToSQL {
   protected visitGroupingSet(thing: GroupingSet, col: Collector): Collector {
     let collector = col
 
-    collector.append(GROUPING_SET)
+    collector.append('GROUPING SETS')
 
     collector = this.groupingArrayOrGroupingElement(thing, collector)
+
+    return collector
+  }
+
+  protected visitIsDistinctFrom(
+    thing: IsDistinctFrom,
+    col: Collector,
+  ): Collector {
+    let collector = col
+
+    collector = this.visit(thing.left, collector)
+    collector.append(' IS DISTINCT FROM ')
+    collector = this.visit(thing.right, collector)
+
+    return collector
+  }
+
+  protected visitIsNotDistinctFrom(
+    thing: IsNotDistinctFrom,
+    col: Collector,
+  ): Collector {
+    let collector = col
+
+    collector = this.visit(thing.left, collector)
+    collector.append(' IS NOT DISTINCT FROM ')
+    collector = this.visit(thing.right, collector)
+
+    return collector
+  }
+
+  protected visitLateral(thing: Lateral, col: Collector): Collector {
+    let collector = col
+
+    collector.append('LATERAL ')
+
+    collector = this.groupingParentheses(thing, collector)
 
     return collector
   }
@@ -121,12 +158,12 @@ export default class PostgreSQL extends ToSQL {
   protected visitMatches(thing: Matches, col: Collector): Collector {
     let collector = col
 
-    const op = thing.caseSensitive ? LIKE : ILIKE
+    const op = thing.caseSensitive ? ' LIKE ' : ' ILIKE '
 
     collector = this.infixValue(thing, collector, op)
 
     if (thing.escape) {
-      collector.append(ESCAPE)
+      collector.append(' ESCAPE ')
 
       collector = this.visit(thing.escape, collector)
     }
@@ -144,6 +181,14 @@ export default class PostgreSQL extends ToSQL {
     return collector
   }
 
+  protected visitNullsFirst(thing: NullsFirst, col: Collector): Collector {
+    return this.visit(thing.expr, col).append(' NULLS FIRST')
+  }
+
+  protected visitNullsLast(thing: NullsLast, col: Collector): Collector {
+    return this.visit(thing.expr, col).append(' NULLS LAST')
+  }
+
   protected visitRegexp(thing: Regexp, col: Collector): Collector {
     let collector = col
 
@@ -157,7 +202,7 @@ export default class PostgreSQL extends ToSQL {
   protected visitRollUp(thing: RollUp, col: Collector): Collector {
     let collector = col
 
-    collector.append(ROLLUP)
+    collector.append('ROLLUP')
 
     collector = this.groupingArrayOrGroupingElement(thing, collector)
 

@@ -11,12 +11,12 @@ import type FactoryMethods from '../mixins/FactoryMethods'
 
 import type Statement from '../nodes/Statement'
 
-class TreeManager<T extends Statement> {
-  public readonly ast: T
+abstract class TreeManager<M extends TreeManager<M, S>, S extends Statement> {
+  public readonly ast: S
 
   protected ctx: any = null
 
-  constructor(ast: T) {
+  constructor(ast: S) {
     this.ast = ast
   }
 
@@ -41,13 +41,14 @@ class TreeManager<T extends Statement> {
     return collector.value
   }
 
-  where(expr: any): TreeManager<T> {
+  where(this: M, expr: any): M {
     this.ctx.wheres.push(expr)
 
     return this
   }
 }
 
-interface TreeManager<T extends Statement> extends FactoryMethods {}
+interface TreeManager<M extends TreeManager<M, S>, S extends Statement>
+  extends FactoryMethods {}
 
 export default TreeManager

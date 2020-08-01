@@ -6,7 +6,7 @@ import InsertManager from '../../src/managers/InsertManager'
 import SelectManager from '../../src/managers/SelectManager'
 
 import SQLLiteral from '../../src/nodes/SQLLiteral'
-import Values from '../../src/nodes/Values'
+import ValuesList from '../../src/nodes/ValuesList'
 
 import Table from '../../src/Table'
 
@@ -24,19 +24,24 @@ describe('InsertManager', () => {
   })
 
   describe('insert', () => {
-    test('can create a Values node', () => {
+    test('can create a ValuesList node', () => {
       const manager = new InsertManager()
-      const node = manager.createValues(['a', 'b'], ['c', 'd'])
+      const node = manager.createValuesList([
+        ['a', 'b'],
+        ['c', 'd'],
+      ])
 
-      expect(node).toBeInstanceOf(Values)
-      expect(node.left).toStrictEqual(['a', 'b'])
-      expect(node.right).toStrictEqual(['c', 'd'])
+      expect(node).toBeInstanceOf(ValuesList)
+      expect(node.rows).toStrictEqual([
+        ['a', 'b'],
+        ['c', 'd'],
+      ])
     })
 
     test('allows SQL literals', () => {
       const manager = new InsertManager()
       manager.into(new Table('users'))
-      manager.values = manager.createValues([new SQLLiteral('*')], ['a'])
+      manager.values = manager.createValues([new SQLLiteral('*')])
 
       expect(manager.toSQL()).toStrictEqual(`INSERT INTO "users" VALUES (*)`)
     })
@@ -219,9 +224,11 @@ describe('InsertManager', () => {
 
       const manager = new InsertManager()
       manager.into(table)
-      manager.values = new Values([1])
+      manager.values = new ValuesList([[1], [2]])
 
-      expect(manager.toSQL()).toStrictEqual(`INSERT INTO "users" VALUES (1)`)
+      expect(manager.toSQL()).toStrictEqual(
+        `INSERT INTO "users" VALUES (1), (2)`,
+      )
     })
 
     test('accepts sql literals', () => {
@@ -243,12 +250,15 @@ describe('InsertManager', () => {
 
       const manager = new InsertManager()
       manager.into(table)
-      manager.values = new Values([1, 'aaron'])
+      manager.values = new ValuesList([
+        [1, 'aaron'],
+        [2, 'david'],
+      ])
       manager.columns.push(table.get('id'))
       manager.columns.push(table.get('name'))
 
       expect(manager.toSQL()).toStrictEqual(
-        `INSERT INTO "users" ("id", "name") VALUES (1, 'aaron')`,
+        `INSERT INTO "users" ("id", "name") VALUES (1, 'aaron'), (2, 'david')`
       )
     })
   })

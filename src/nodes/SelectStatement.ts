@@ -1,7 +1,9 @@
-import Node from './Node'
+import NodeExpression from './NodeExpression'
 import SelectCore from './SelectCore'
 
-export default class SelectStatement extends Node {
+import type AliasPredication from '../mixins/AliasPredication'
+
+class SelectStatement extends NodeExpression {
   public readonly cores: SelectCore[]
 
   public limit: any = null
@@ -20,3 +22,7 @@ export default class SelectStatement extends Node {
     this.cores = cores
   }
 }
+
+interface SelectStatement extends AliasPredication {}
+
+export default SelectStatement

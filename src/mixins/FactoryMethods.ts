@@ -19,6 +19,10 @@ import SQLLiteral from '../nodes/SQLLiteral'
 import Join from '../nodes/Join'
 
 export default abstract class FactoryMethods {
+  coalesce(...exprs: any[]): NamedSQLFunction {
+    return new NamedSQLFunction('COALESCE', exprs)
+  }
+
   createAnd(clauses: any[]): And {
     return new And(clauses)
   }

@@ -1,3 +1,5 @@
 import Binary from './Binary'
 
-export default class Assignment extends Binary {}
+import type Visitable from '../visitors/Visitable'
+
+export default class Assignment extends Binary<Visitable, Visitable> {}

@@ -1,3 +1,9 @@
-import Node from './Node'
+import NodeExpression from './NodeExpression'
 
-export default class False extends Node {}
+import type AliasPredication from '../mixins/AliasPredication'
+
+class False extends NodeExpression {}
+
+interface False extends AliasPredication {}
+
+export default False

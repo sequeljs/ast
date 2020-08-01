@@ -48,6 +48,7 @@ describe('Equality', () => {
 
         const engine: Engine = {
           connection: {
+            inClauseLength: 2,
             visitor: null,
             quote(value: number | string): number | string {
               quoteCount += 1
@@ -60,6 +61,9 @@ describe('Equality', () => {
             quoteTableName(value: string): string {
               quoteCount += 1
               return quoteTableName(value)
+            },
+            sanitizeAsSQLComment(value: any) {
+              return value
             },
           },
         }

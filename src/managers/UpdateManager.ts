@@ -1,37 +1,19 @@
 import Assignment from '../nodes/Assignment'
-import Limit from '../nodes/Limit'
+import SQLLiteral from '../nodes/SQLLiteral'
 import UnqualifiedColumn from '../nodes/UnqualifiedColumn'
 import UpdateStatement from '../nodes/UpdateStatement'
-import buildQuoted from '../nodes/buildQuoted'
 
 import TreeManager from './TreeManager'
-import { SQLLiteral } from '../nodes/mod'
 
-export default class UpdateManager extends TreeManager<UpdateStatement> {
+import type StatementMethods from '../mixins/StatementMethods'
+
+class UpdateManager extends TreeManager<UpdateManager, UpdateStatement> {
   protected ctx: UpdateStatement
-
-  get key(): UpdateStatement['key'] {
-    return this.ast.key
-  }
-
-  set key(key: any) {
-    this.ast.key = buildQuoted(key)
-  }
-
-  set wheres(exprs: UpdateStatement['wheres']) {
-    this.ast.wheres = exprs
-  }
 
   constructor() {
     super(new UpdateStatement())
 
     this.ctx = this.ast
-  }
-
-  order(...expr: UpdateStatement['orders']): UpdateManager {
-    this.ast.orders = expr
-
-    return this
   }
 
   set(values: any): UpdateManager {
@@ -54,18 +36,8 @@ export default class UpdateManager extends TreeManager<UpdateStatement> {
 
     return this
   }
-
-  take(limit: any): UpdateManager {
-    if (limit) {
-      this.ast.limit = new Limit(buildQuoted(limit))
-    }
-
-    return this
-  }
-
-  where(expr: UpdateStatement['where']): UpdateManager {
-    this.ast.wheres.push(expr)
-
-    return this
-  }
 }
+
+interface UpdateManager extends StatementMethods<UpdateStatement> {}
+
+export default UpdateManager

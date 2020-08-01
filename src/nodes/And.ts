@@ -1,6 +1,8 @@
-import Node from './Node'
+import NodeExpression from './NodeExpression'
 
-export default class And extends Node {
+import type AliasPredication from '../mixins/AliasPredication'
+
+class And extends NodeExpression {
   public readonly children: any[]
 
   get left(): any {
@@ -17,3 +19,7 @@ export default class And extends Node {
     this.children = children
   }
 }
+
+interface And extends AliasPredication {}
+
+export default And

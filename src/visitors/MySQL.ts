@@ -3,33 +3,23 @@ import SQLLiteral from '../nodes/SQLLiteral'
 import Union from '../nodes/Union'
 
 import ToSQL from './ToSQL'
-import {
-  AND,
-  BINARY,
-  COMMA,
-  CONCAT,
-  DUAL,
-  ORDER_BY,
-  SET,
-  SPACE,
-  UNION,
-  UPDATE,
-  WHERE,
-} from './constants'
 
 import type Collector from '../collectors/Collector'
 
 import type Bin from '../nodes/Bin'
 import type Concat from '../nodes/Concat'
+import type IsDistinctFrom from '../nodes/IsDistinctFrom'
+import type IsNotDistinctFrom from '../nodes/IsNotDistinctFrom'
 import type SelectCore from '../nodes/SelectCore'
 import type SelectStatement from '../nodes/SelectStatement'
+import type UnqualifiedColumn from '../nodes/UnqualifiedColumn'
 import type UpdateStatement from '../nodes/UpdateStatement'
 
 export default class MySQL extends ToSQL {
   protected visitBin(thing: Bin, col: Collector): Collector {
     let collector = col
 
-    collector.append(BINARY)
+    collector.append('BINARY ')
 
     collector = this.visit(thing.expr, collector)
 
@@ -39,15 +29,37 @@ export default class MySQL extends ToSQL {
   protected visitConcat(thing: Concat, col: Collector): Collector {
     let collector = col
 
-    collector.append(CONCAT)
-    collector.append('(')
+    collector.append(' CONCAT(')
+    collector = this.visit(thing.left, collector)
+    collector.append(', ')
+    collector = this.visit(thing.right, collector)
+    collector.append(') ')
+
+    return collector
+  }
+
+  protected visitIsDistinctFrom(
+    thing: IsDistinctFrom,
+    col: Collector,
+  ): Collector {
+    let collector = col
+
+    collector.append('NOT ')
+
+    collector = this.visitIsNotDistinctFrom(thing, collector)
+
+    return collector
+  }
+
+  protected visitIsNotDistinctFrom(
+    thing: IsNotDistinctFrom,
+    col: Collector,
+  ): Collector {
+    let collector = col
 
     collector = this.visit(thing.left, collector)
-    collector.append(COMMA)
+    collector.append(' <=> ')
     collector = this.visit(thing.right, collector)
-
-    collector.append(')')
-    collector.append(SPACE)
 
     return collector
   }
@@ -55,7 +67,7 @@ export default class MySQL extends ToSQL {
   protected visitSelectCore(thing: SelectCore, col: Collector): Collector {
     if (!thing.from) {
       // eslint-disable-next-line no-param-reassign
-      thing.from = new SQLLiteral(DUAL)
+      thing.from = new SQLLiteral('DUAL')
     }
 
     return super.visitSelectCore(thing, col)
@@ -86,8 +98,7 @@ export default class MySQL extends ToSQL {
     let collector = col
 
     if (!suppressParens) {
-      collector.append('(')
-      collector.append(SPACE)
+      collector.append('( ')
     }
 
     if (thing.left instanceof Union) {
@@ -96,7 +107,7 @@ export default class MySQL extends ToSQL {
       collector = this.visit(thing.left, collector)
     }
 
-    collector.append(UNION)
+    collector.append(' UNION ')
 
     if (thing.right instanceof Union) {
       collector = this.visitUnion(thing.right, collector, true)
@@ -105,9 +116,19 @@ export default class MySQL extends ToSQL {
     }
 
     if (!suppressParens) {
-      collector.append(SPACE)
-      collector.append(')')
+      collector.append(' )')
     }
+
+    return collector
+  }
+
+  protected visitUnqualifiedColumn(
+    thing: UnqualifiedColumn,
+    col: Collector,
+  ): Collector {
+    let collector = col
+
+    collector = this.visit(thing.expr, collector)
 
     return collector
   }
@@ -118,25 +139,23 @@ export default class MySQL extends ToSQL {
   ): Collector {
     let collector = col
 
-    collector.append(UPDATE)
+    collector.append('UPDATE ')
 
     collector = this.visit(thing.relation, collector)
 
     if (thing.values.length > 0) {
-      collector.append(SET)
-      collector = this.injectJoin(thing.values, collector, COMMA)
+      collector.append(' SET ')
+      collector = this.injectJoin(thing.values, collector, ', ')
     }
 
     if (thing.wheres.length > 0) {
-      collector.append(WHERE)
-      collector = this.injectJoin(thing.wheres, collector, AND)
+      collector.append(' WHERE ')
+      collector = this.injectJoin(thing.wheres, collector, ' AND ')
     }
 
     if (thing.orders.length > 0) {
-      collector.append(SPACE)
-      collector.append(ORDER_BY)
-      collector.append(SPACE)
-      collector = this.injectJoin(thing.orders, collector, COMMA)
+      collector.append(' ORDER BY ')
+      collector = this.injectJoin(thing.orders, collector, ', ')
     }
 
     collector = this.maybeVisit(thing.limit, collector)
