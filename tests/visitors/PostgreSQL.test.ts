@@ -11,6 +11,8 @@ import DistinctOn from '../../src/nodes/DistinctOn'
 import DoesNotMatch from '../../src/nodes/DoesNotMatch'
 import GroupingElement from '../../src/nodes/GroupingElement'
 import GroupingSet from '../../src/nodes/GroupingSet'
+import IsDistinctFrom from '../../src/nodes/IsDistinctFrom'
+import IsNotDistinctFrom from '../../src/nodes/IsNotDistinctFrom'
 import Limit from '../../src/nodes/Limit'
 import Lock from '../../src/nodes/Lock'
 import Matches from '../../src/nodes/Matches'
@@ -90,6 +92,38 @@ describe('PostgreSQL Visitor', () => {
     core.setQuantifier = new Distinct()
 
     expect(compile(core)).toStrictEqual('SELECT DISTINCT')
+  })
+
+  test('encloses LATERAL queries in parens', () => {
+    const subquery = scope.table
+      .project('id')
+      .where(scope.table.get('name').matches('foo%'))
+
+    expect(compile(subquery.lateral())).toStrictEqual(
+      `LATERAL (SELECT id FROM "users" WHERE "users"."name" ILIKE 'foo%')`,
+    )
+  })
+
+  test('produces LATERAL queries with alias', () => {
+    const subquery = scope.table
+      .project('id')
+      .where(scope.table.get('name').matches('foo%'))
+
+    expect(compile(subquery.lateral('bar'))).toStrictEqual(
+      `LATERAL (SELECT id FROM "users" WHERE "users"."name" ILIKE 'foo%') bar`,
+    )
+  })
+
+  test('should order with NULLS FIRST', () => {
+    const node = scope.attribute.desc().nullsFirst()
+
+    expect(compile(node)).toStrictEqual(`"users"."id" DESC NULLS FIRST`)
+  })
+
+  test('should order with NULLS LAST', () => {
+    const node = scope.attribute.desc().nullsLast()
+
+    expect(compile(node)).toStrictEqual(`"users"."id" DESC NULLS LAST`)
   })
 
   describe('Matches', () => {
@@ -280,7 +314,7 @@ describe('PostgreSQL Visitor', () => {
       ])
 
       expect(compile(node)).toStrictEqual(
-        `GROUPING SET( "users"."name", "users"."bool" )`,
+        `GROUPING SETS( "users"."name", "users"."bool" )`,
       )
     })
 
@@ -293,7 +327,7 @@ describe('PostgreSQL Visitor', () => {
       const node = new GroupingSet(group)
 
       expect(compile(node)).toStrictEqual(
-        `GROUPING SET( "users"."name", "users"."bool" )`,
+        `GROUPING SETS( "users"."name", "users"."bool" )`,
       )
     })
 
@@ -307,7 +341,7 @@ describe('PostgreSQL Visitor', () => {
       const node = new GroupingSet([group1, group2])
 
       expect(compile(node)).toStrictEqual(
-        `GROUPING SET( ( "users"."name" ), ( "users"."bool", "users"."created_at" ) )`,
+        `GROUPING SETS( ( "users"."name" ), ( "users"."bool", "users"."created_at" ) )`,
       )
     })
   })
@@ -348,6 +382,70 @@ describe('PostgreSQL Visitor', () => {
 
       expect(compile(node)).toStrictEqual(
         `ROLLUP( ( "users"."name" ), ( "users"."bool", "users"."created_at" ) )`,
+      )
+    })
+  })
+
+  describe('IsDistinctFrom', () => {
+    test('should handle column names on both sides', () => {
+      const relation = new Table('users')
+
+      const node = relation
+        .get('first_name')
+        .isDistinctFrom(relation.get('last_name'))
+
+      expect(compile(node)).toStrictEqual(
+        `"users"."first_name" IS DISTINCT FROM "users"."last_name"`,
+      )
+    })
+
+    test('should handle null', () => {
+      const relation = new Table('users')
+
+      const node = new IsDistinctFrom(
+        relation.get('name'),
+        buildQuoted(null, relation.get('active')),
+      )
+
+      expect(compile(node)).toStrictEqual(
+        `"users"."name" IS DISTINCT FROM NULL`,
+      )
+    })
+  })
+
+  describe('IsNotDistinctFrom', () => {
+    test('should construct a valid generic SQL statement', () => {
+      const relation = new Table('users')
+
+      const node = relation.get('name').isNotDistinctFrom('Aaron Patterson')
+
+      expect(compile(node)).toStrictEqual(
+        `"users"."name" IS NOT DISTINCT FROM 'Aaron Patterson'`,
+      )
+    })
+
+    test('should handle column names on both sides', () => {
+      const relation = new Table('users')
+
+      const node = relation
+        .get('first_name')
+        .isNotDistinctFrom(relation.get('last_name'))
+
+      expect(compile(node)).toStrictEqual(
+        `"users"."first_name" IS NOT DISTINCT FROM "users"."last_name"`,
+      )
+    })
+
+    test('should handle null', () => {
+      const relation = new Table('users')
+
+      const node = new IsNotDistinctFrom(
+        relation.get('name'),
+        buildQuoted(null, relation.get('active')),
+      )
+
+      expect(compile(node)).toStrictEqual(
+        `"users"."name" IS NOT DISTINCT FROM NULL`,
       )
     })
   })

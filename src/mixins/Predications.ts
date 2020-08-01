@@ -6,6 +6,8 @@ import GreaterThan from '../nodes/GreaterThan'
 import GreaterThanOrEqual from '../nodes/GreaterThanOrEqual'
 import Grouping from '../nodes/Grouping'
 import In from '../nodes/In'
+import IsDistinctFrom from '../nodes/IsDistinctFrom'
+import IsNotDistinctFrom from '../nodes/IsNotDistinctFrom'
 import LessThan from '../nodes/LessThan'
 import LessThanOrEqual from '../nodes/LessThanOrEqual'
 import Matches from '../nodes/Matches'
@@ -13,9 +15,11 @@ import NotEqual from '../nodes/NotEqual'
 import NotIn from '../nodes/NotIn'
 import NotRegexp from '../nodes/NotRegexp'
 import Or from '../nodes/Or'
-import Quoted from '../nodes/Quoted'
 import Regexp from '../nodes/Regexp'
 import buildQuoted from '../nodes/buildQuoted'
+
+import type BindParam from '../nodes/BindParam'
+import type Quoted from '../nodes/Quoted'
 
 export default abstract class Predications {
   protected groupingAll(
@@ -38,20 +42,16 @@ export default abstract class Predications {
     return new Grouping(nodes.reduce((memo, node) => new Or(memo, node)))
   }
 
-  protected isEqualQuoted(maybeQuoted: any, value: any): boolean {
-    if (maybeQuoted instanceof Quoted) {
-      return maybeQuoted.value === value
-    }
-
-    return maybeQuoted === value
+  protected isInfinity(value: any): boolean {
+    return value === Infinity || value === -Infinity || value.isInfinite?.()
   }
 
-  protected quotedNode(other: any): any {
-    return buildQuoted(other, this)
+  protected isOpenEnded(value: any): boolean {
+    return value === null || this.isInfinity(value) || this.isUnboundable(value)
   }
 
-  protected quotedArray(others: any[]): any[] {
-    return others.map((v) => this.quotedNode(v))
+  protected isUnboundable(value: any): boolean {
+    return value?.isUnboundable?.()
   }
 
   doesNotMatch(
@@ -148,6 +148,14 @@ export default abstract class Predications {
     return this.groupingAny(this.inVal.bind(this), others)
   }
 
+  isNotDistinctFrom(other: any): IsNotDistinctFrom {
+    return new IsNotDistinctFrom(this, this.quotedNode(other))
+  }
+
+  isDistinctFrom(other: any): IsDistinctFrom {
+    return new IsDistinctFrom(this, this.quotedNode(other))
+  }
+
   lt(other: any): LessThan {
     return new LessThan(this, this.quotedNode(other))
   }
@@ -238,13 +246,25 @@ export default abstract class Predications {
     return this.groupingAny(this.notInVal.bind(this), others)
   }
 
+  quotedNode(other: any): any {
+    return buildQuoted(other, this)
+  }
+
+  quotedArray(others: any[]): any[] {
+    return others.map((v) => this.quotedNode(v))
+  }
+
   between(
-    begin: number | Quoted,
-    end: number | Quoted,
+    begin: number | BindParam | Quoted,
+    end: number | BindParam | Quoted,
     inclusive = true,
   ): And | Between | GreaterThanOrEqual | LessThan | LessThanOrEqual | NotIn {
-    if (this.isEqualQuoted(begin, -Infinity)) {
-      if (this.isEqualQuoted(end, Infinity)) {
+    if (this.isUnboundable(begin) || this.isUnboundable(end)) {
+      return this.inVal([])
+    }
+
+    if (this.isOpenEnded(begin)) {
+      if (this.isOpenEnded(end)) {
         return this.notInVal([])
       }
 
@@ -255,7 +275,7 @@ export default abstract class Predications {
       return this.lteq(end)
     }
 
-    if (this.isEqualQuoted(end, Infinity)) {
+    if (this.isOpenEnded(end)) {
       return this.gteq(begin)
     }
 
@@ -270,12 +290,16 @@ export default abstract class Predications {
   }
 
   notBetween(
-    begin: number | Quoted,
-    end: number | Quoted,
+    begin: number | BindParam | Quoted,
+    end: number | BindParam | Quoted,
     inclusive = true,
   ): GreaterThan | GreaterThanOrEqual | Grouping | In | LessThan {
-    if (this.isEqualQuoted(begin, -Infinity)) {
-      if (this.isEqualQuoted(end, Infinity)) {
+    if (this.isUnboundable(begin) || this.isUnboundable(end)) {
+      return this.notInVal([])
+    }
+
+    if (this.isOpenEnded(begin)) {
+      if (this.isOpenEnded(end)) {
         return this.inVal([])
       }
 
@@ -286,7 +310,7 @@ export default abstract class Predications {
       return this.gt(end)
     }
 
-    if (this.isEqualQuoted(end, Infinity)) {
+    if (this.isOpenEnded(end)) {
       return this.lt(begin)
     }
 

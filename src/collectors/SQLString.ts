@@ -22,8 +22,4 @@ export default class SQLString implements Collector<string> {
 
     return this
   }
-
-  compile(_: any): string {
-    return this.str
-  }
 }

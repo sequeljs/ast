@@ -4,6 +4,7 @@ import EmptyJoinError from '../errors/EmptyJoinError'
 import EngineNotSetError from '../errors/EngineNotSetError'
 import VisitorNotSetError from '../errors/VisitorNotSetError'
 
+import Comment from '../nodes/Comment'
 import Distinct from '../nodes/Distinct'
 import DistinctOn from '../nodes/DistinctOn'
 import Except from '../nodes/Except'
@@ -12,16 +13,17 @@ import Group from '../nodes/Group'
 import InnerJoin from '../nodes/InnerJoin'
 import Intersect from '../nodes/Intersect'
 import Join from '../nodes/Join'
+import Lateral from '../nodes/Lateral'
 import Limit from '../nodes/Limit'
 import Lock from '../nodes/Lock'
 import NamedWindow from '../nodes/NamedWindow'
 import Offset from '../nodes/Offset'
 import On from '../nodes/On'
+import OptimizerHints from '../nodes/OptimizerHints'
 import OuterJoin from '../nodes/OuterJoin'
 import SQLLiteral from '../nodes/SQLLiteral'
 import SelectStatement from '../nodes/SelectStatement'
 import StringJoin from '../nodes/StringJoin'
-import Top from '../nodes/Top'
 import Union from '../nodes/Union'
 import UnionAll from '../nodes/UnionAll'
 import With from '../nodes/With'
@@ -41,7 +43,7 @@ import type CRUD from '../mixins/CRUD'
 import type SelectCore from '../nodes/SelectCore'
 import type TableAlias from '../nodes/TableAlias'
 
-class SelectManager extends TreeManager<SelectStatement> {
+class SelectManager extends TreeManager<SelectManager, SelectStatement> {
   protected ctx: SelectCore
 
   get constraints(): SelectCore['wheres'] {
@@ -126,6 +128,12 @@ class SelectManager extends TreeManager<SelectStatement> {
     return this.createTableAlias(this.grouping(this.ast), new SQLLiteral(other))
   }
 
+  comment(...values: any): SelectManager {
+    this.ctx.comment = new Comment(values)
+
+    return this
+  }
+
   distinct(value = true): SelectManager {
     this.ctx.setQuantifier = value ? new Distinct() : null
 
@@ -138,7 +146,7 @@ class SelectManager extends TreeManager<SelectStatement> {
     return this
   }
 
-  except(other: TreeManager<SelectStatement>): Except {
+  except(other: TreeManager<SelectManager, SelectStatement>): Except {
     return new Except(this.ast, other.ast)
   }
 
@@ -178,7 +186,7 @@ class SelectManager extends TreeManager<SelectStatement> {
     return this
   }
 
-  intersect(other: TreeManager<SelectStatement>): Intersect {
+  intersect(other: TreeManager<SelectManager, SelectStatement>): Intersect {
     return new Intersect(this.ast, other.ast)
   }
 
@@ -207,6 +215,12 @@ class SelectManager extends TreeManager<SelectStatement> {
     return this
   }
 
+  lateral(tableName: string | null = null): Lateral {
+    const base = tableName ? this.as(tableName) : this.ast
+
+    return new Lateral(base)
+  }
+
   lock(locking: any = new SQLLiteral('FOR UPDATE')): SelectManager {
     let lock = locking
     if (lock === true) {
@@ -220,7 +234,7 @@ class SelectManager extends TreeManager<SelectStatement> {
     return this
   }
 
-  minus(other: TreeManager<SelectStatement>): Except {
+  minus(other: TreeManager<SelectManager, SelectStatement>): Except {
     return this.except(other)
   }
 
@@ -228,6 +242,14 @@ class SelectManager extends TreeManager<SelectStatement> {
     this.ctx.source.right[this.ctx.source.right.length - 1].right = new On(
       this.collapse(exprs),
     )
+
+    return this
+  }
+
+  optimizerHints(...hints: any[]): SelectManager {
+    if (hints.length > 0) {
+      this.ctx.optimizerHints = new OptimizerHints(hints)
+    }
 
     return this
   }
@@ -265,20 +287,18 @@ class SelectManager extends TreeManager<SelectStatement> {
   take(limit: any): SelectManager {
     if (limit) {
       this.ast.limit = new Limit(limit)
-      this.ctx.top = new Top(limit)
     } else {
       this.ast.limit = null
-      this.ctx.top = null
     }
 
     return this
   }
 
-  union(other: TreeManager<SelectStatement>): Union {
+  union(other: TreeManager<SelectManager, SelectStatement>): Union {
     return new Union(this.ast, other.ast)
   }
 
-  unionAll(other: TreeManager<SelectStatement>): UnionAll {
+  unionAll(other: TreeManager<SelectManager, SelectStatement>): UnionAll {
     return new UnionAll(this.ast, other.ast)
   }
 

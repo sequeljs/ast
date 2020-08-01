@@ -1,3 +1,9 @@
-import Node from './Node'
+import NodeExpression from './NodeExpression'
 
-export default class Distinct extends Node {}
+import type AliasPredication from '../mixins/AliasPredication'
+
+class Distinct extends NodeExpression {}
+
+interface Distinct extends AliasPredication {}
+
+export default Distinct

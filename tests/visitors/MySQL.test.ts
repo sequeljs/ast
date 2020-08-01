@@ -5,12 +5,16 @@ import SQLString from '../../src/collectors/SQLString'
 import SelectManager from '../../src/managers/SelectManager'
 import UpdateManager from '../../src/managers/UpdateManager'
 
+import Assignment from '../../src/nodes/Assignment'
+import IsDistinctFrom from '../../src/nodes/IsDistinctFrom'
+import IsNotDistinctFrom from '../../src/nodes/IsNotDistinctFrom'
 import Limit from '../../src/nodes/Limit'
 import Lock from '../../src/nodes/Lock'
 import Offset from '../../src/nodes/Offset'
 import SQLLiteral from '../../src/nodes/SQLLiteral'
 import SelectStatement from '../../src/nodes/SelectStatement'
 import Union from '../../src/nodes/Union'
+import UnqualifiedColumn from '../../src/nodes/UnqualifiedColumn'
 import UpdateStatement from '../../src/nodes/UpdateStatement'
 import buildQuoted from '../../src/nodes/buildQuoted'
 
@@ -69,6 +73,19 @@ describe('MySQL Visitor', () => {
     const stmt = new SelectStatement()
 
     expect(compile(stmt)).toStrictEqual(`SELECT FROM DUAL`)
+  })
+
+  test('should visit Assignment', () => {
+    const table = new Table('users')
+
+    const column = table.get('id')
+
+    const node = new Assignment(
+      new UnqualifiedColumn(column),
+      new UnqualifiedColumn(column),
+    )
+
+    expect(compile(node)).toStrictEqual(`"users"."id" = "users"."id"`)
   })
 
   describe('locking', () => {
@@ -133,7 +150,9 @@ describe('MySQL Visitor', () => {
       um.table(table)
       um.order(table.get('id'))
 
-      expect(compile(um.ast)).toStrictEqual(`UPDATE "users" ORDER BY "users"."id"`)
+      expect(compile(um.ast)).toStrictEqual(
+        `UPDATE "users" ORDER BY "users"."id"`,
+      )
     })
 
     test('generates a where clause', () => {
@@ -143,7 +162,69 @@ describe('MySQL Visitor', () => {
       um.table(table)
       um.where(table.get('id').eq(1))
 
-      expect(compile(um.ast)).toStrictEqual(`UPDATE "users" WHERE "users"."id" = 1`)
+      expect(compile(um.ast)).toStrictEqual(
+        `UPDATE "users" WHERE "users"."id" = 1`,
+      )
+    })
+  })
+
+  describe('IsDistinctFrom', () => {
+    test('should handle column names on both sides', () => {
+      const relation = new Table('users')
+
+      const node = relation
+        .get('first_name')
+        .isDistinctFrom(relation.get('last_name'))
+
+      expect(compile(node)).toStrictEqual(
+        `NOT "users"."first_name" <=> "users"."last_name"`,
+      )
+    })
+
+    test('should handle null', () => {
+      const relation = new Table('users')
+
+      const node = new IsDistinctFrom(
+        relation.get('name'),
+        buildQuoted(null, relation.get('active')),
+      )
+
+      expect(compile(node)).toStrictEqual(`NOT "users"."name" <=> NULL`)
+    })
+  })
+
+  describe('IsNotDistinctFrom', () => {
+    test('should construct a valid generic SQL statement', () => {
+      const relation = new Table('users')
+
+      const node = relation.get('name').isNotDistinctFrom('Aaron Patterson')
+
+      expect(compile(node)).toStrictEqual(
+        `"users"."name" <=> 'Aaron Patterson'`,
+      )
+    })
+
+    test('should handle column names on both sides', () => {
+      const relation = new Table('users')
+
+      const node = relation
+        .get('first_name')
+        .isNotDistinctFrom(relation.get('last_name'))
+
+      expect(compile(node)).toStrictEqual(
+        `"users"."first_name" <=> "users"."last_name"`,
+      )
+    })
+
+    test('should handle null', () => {
+      const relation = new Table('users')
+
+      const node = new IsNotDistinctFrom(
+        relation.get('name'),
+        buildQuoted(null, relation.get('active')),
+      )
+
+      expect(compile(node)).toStrictEqual(`"users"."name" <=> NULL`)
     })
   })
 })

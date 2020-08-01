@@ -1,7 +1,6 @@
 import SQLLiteral from '../nodes/SQLLiteral'
 
 import ToSQL from './ToSQL'
-import { AND, WHERE } from './constants'
 
 import type Collector from '../collectors/Collector'
 
@@ -28,7 +27,7 @@ export default class WhereSQL extends ToSQL {
   protected visitSelectCore(thing: SelectCore, col: Collector): Collector {
     let collector = col
 
-    collector.append(WHERE)
+    collector.append(' WHERE ')
 
     const wheres = thing.wheres.map((where: Visitable) => {
       const CollectorClass: CollectorConstructor = col.constructor as CollectorConstructor
@@ -39,7 +38,7 @@ export default class WhereSQL extends ToSQL {
       )
     })
 
-    collector = this.injectJoin(wheres, collector, AND)
+    collector = this.injectJoin(wheres, collector, ' AND ')
 
     return collector
   }

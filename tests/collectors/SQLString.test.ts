@@ -18,12 +18,12 @@ import FakeRecord from '../support/FakeRecord'
 const connection = new FakeRecord()
 const visitor = new ToSQL(connection.connection)
 
-function astWithBinds(bv: BindParam): SelectStatement {
+function astWithBinds(): SelectStatement {
   const table = new Table('users')
 
   const manager = new SelectManager(table)
-  manager.where(table.get('age').eq(bv))
-  manager.where(table.get('name').eq(bv))
+  manager.where(table.get('age').eq(new BindParam('hello')))
+  manager.where(table.get('name').eq(new BindParam('world')))
 
   return manager.ast
 }
@@ -32,14 +32,14 @@ function collect(node: Visitable): SQLString {
   return visitor.accept(node, new SQLString())
 }
 
+function compile(node: Visitable): string {
+  return collect(node).value
+}
+
 test('compile', () => {
-  const bv = new BindParam(1)
+  const stmt = astWithBinds()
 
-  const collector = collect(astWithBinds(bv))
-
-  const sql = collector.compile(['hello', 'world'])
-
-  expect(sql).toStrictEqual(
+  expect(compile(stmt)).toStrictEqual(
     `SELECT FROM "users" WHERE "users"."age" = ? AND "users"."name" = ?`,
   )
 })

@@ -1,14 +1,11 @@
 import Else from './Else'
-import Node from './Node'
+import NodeExpression from './NodeExpression'
 import When from './When'
 import buildQuoted from './buildQuoted'
 
 import type AliasPredication from '../mixins/AliasPredication'
-import type ConcatPredication from '../mixins/ConcatPredication'
-import type OrderPredications from '../mixins/OrderPredications'
-import type Predications from '../mixins/Predications'
 
-class Case extends Node {
+class Case extends NodeExpression {
   public case: any
 
   public conditions: When[] = []
@@ -41,10 +38,6 @@ class Case extends Node {
   }
 }
 
-interface Case
-  extends AliasPredication,
-    ConcatPredication,
-    OrderPredications,
-    Predications {}
+interface Case extends AliasPredication {}
 
 export default Case

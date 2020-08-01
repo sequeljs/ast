@@ -36,6 +36,7 @@ import SequelAST from '../../src/SequelAST'
 import Table from '../../src/Table'
 
 import FakeRecord from '../support/FakeRecord'
+import { Union } from '../../src/nodes/mod'
 
 const scope: {
   engine: Engine
@@ -349,6 +350,17 @@ describe('SelectManager', () => {
 
       expect(node.toSQL()).toStrictEqual(
         `( SELECT * FROM "users" WHERE "users"."age" < 18 UNION SELECT * FROM "users" WHERE "users"."age" > 99 )`,
+      )
+    })
+
+    test('should handle nested', () => {
+      const node = new Union(
+        new Union(scope.manager1, scope.manager2),
+        new Union(scope.manager1, scope.manager2),
+      )
+
+      expect(node.toSQL()).toStrictEqual(
+        `( (SELECT * FROM "users" WHERE "users"."age" < 18) UNION (SELECT * FROM "users" WHERE "users"."age" > 99) UNION (SELECT * FROM "users" WHERE "users"."age" < 18) UNION (SELECT * FROM "users" WHERE "users"."age" > 99) )`,
       )
     })
 
@@ -1554,7 +1566,7 @@ describe('SelectManager', () => {
       manager.take(1)
 
       expect(manager.toSQL()).toStrictEqual(
-        `SELECT  "users"."id" FROM "users" WHERE "users"."id" = 1 LIMIT 1`,
+        `SELECT "users"."id" FROM "users" WHERE "users"."id" = 1 LIMIT 1`,
       )
     })
 
@@ -1683,6 +1695,77 @@ describe('SelectManager', () => {
 
       expect(manager.distinctOn(table.get('id'))).toStrictEqual(manager)
       expect(manager.distinctOn(false)).toStrictEqual(manager)
+    })
+  })
+
+  describe('comment', () => {
+    test('chains', () => {
+      const manager = new SelectManager()
+
+      expect(manager.comment('selecting')).toStrictEqual(manager)
+    })
+
+    test('appends a comment to the generated query', () => {
+      const table = new Table('users')
+
+      const manager = new SelectManager()
+      manager.from(table).project(table.get('id'))
+      manager.comment('selecting')
+
+      expect(manager.toSQL()).toStrictEqual(
+        `SELECT "users"."id" FROM "users" /* selecting */`,
+      )
+
+      manager.comment('selecting', 'with', 'comment')
+
+      expect(manager.toSQL()).toStrictEqual(
+        `SELECT "users"."id" FROM "users" /* selecting */ /* with */ /* comment */`,
+      )
+    })
+
+    test('accepts a SQLLiteral as a comment', () => {
+      const table = new Table('users')
+
+      const manager = new SelectManager()
+      manager.from(table).project(table.get('id'))
+      manager.comment(new SQLLiteral('selecting'))
+
+      expect(manager.toSQL()).toStrictEqual(
+        `SELECT "users"."id" FROM "users" /* selecting */`,
+      )
+    })
+  })
+
+  describe('optimizerHints', () => {
+    test('chains', () => {
+      const manager = new SelectManager()
+
+      expect(manager.optimizerHints('optimizer hints')).toStrictEqual(manager)
+    })
+
+    test('should handle optimizerHints', () => {
+      const table = new Table('users')
+
+      const manager = new SelectManager()
+      manager.from(table).project(table.get('id'))
+      manager.optimizerHints(
+        'MAX_EXECUTION_TIME(50000)',
+        'NO_INDEX_MERGE(topics)',
+      )
+
+      expect(manager.toSQL()).toStrictEqual(
+        `SELECT /*+ MAX_EXECUTION_TIME(50000) NO_INDEX_MERGE(topics) */ "users"."id" FROM "users"`,
+      )
+    })
+
+    test('noops on null', () => {
+      const table = new Table('users')
+
+      const manager = new SelectManager()
+      manager.from(table).project(table.get('id'))
+      manager.optimizerHints()
+
+      expect(manager.toSQL()).toStrictEqual(`SELECT "users"."id" FROM "users"`)
     })
   })
 })

@@ -28,5 +28,5 @@ our
 ## Inspiration
 
 `@sequeljs/ast` is basically a rewrite of
-[Rails' Arel](https://github.com/rails/rails/tree/v6.0.0/activerecord/lib/arel)
+[Rails' Arel](https://github.com/rails/rails/tree/v6.0.3.2/activerecord/lib/arel)
 library in TypeScript.

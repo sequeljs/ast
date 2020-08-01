@@ -1,17 +1,16 @@
 import DeleteStatement from '../nodes/DeleteStatement'
-import Limit from '../nodes/Limit'
-import buildQuoted from '../nodes/buildQuoted'
 
 import TreeManager from './TreeManager'
 
 import type Relation from '../interfaces/Relation'
 
-export default class DeleteManager extends TreeManager<DeleteStatement> {
-  public ctx: DeleteStatement
+import type StatementMethods from '../mixins/StatementMethods'
 
-  set wheres(list: any[]) {
-    this.ctx.wheres = list
-  }
+import type JoinSource from '../nodes/JoinSource'
+import type SQLLiteral from '../nodes/SQLLiteral'
+
+class DeleteManager extends TreeManager<DeleteManager, DeleteStatement> {
+  public ctx: DeleteStatement
 
   constructor() {
     super(new DeleteStatement())
@@ -19,17 +18,13 @@ export default class DeleteManager extends TreeManager<DeleteStatement> {
     this.ctx = this.ast
   }
 
-  from(relation: Relation): DeleteManager {
+  from(relation: JoinSource | Relation | SQLLiteral): DeleteManager {
     this.ctx.relation = relation
 
     return this
   }
-
-  take(limit: any): DeleteManager {
-    if (limit) {
-      this.ctx.limit = new Limit(buildQuoted(limit))
-    }
-
-    return this
-  }
 }
+
+interface DeleteManager extends StatementMethods<DeleteStatement> {}
+
+export default DeleteManager

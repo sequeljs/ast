@@ -1,18 +1,9 @@
-import Node from './Node'
+import Unary from './Unary'
 
-import type BindParam from './BindParam'
-import type SQLLiteral from './SQLLiteral'
+import type ValuesListRow from './ValuesListRow'
 
-type Row = {
-  [k: string]: number | string | BindParam | SQLLiteral
-}
-
-export default class ValuesList extends Node {
-  public readonly rows: Row[]
-
-  constructor(rows: Row[]) {
-    super()
-
-    this.rows = rows
+export default class ValuesList extends Unary<ValuesListRow[]> {
+  get rows(): Unary<ValuesListRow[]>['expr'] {
+    return this.expr
   }
 }

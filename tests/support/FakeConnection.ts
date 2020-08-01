@@ -9,6 +9,10 @@ export default class FakeConnection implements Connection {
 
   public visitor: Visitor | null
 
+  get inClauseLength(): number {
+    return 3
+  }
+
   constructor(visitor: Visitor | null = null) {
     this.tables = ['users', 'photos', 'developers', 'products']
 
@@ -25,5 +29,9 @@ export default class FakeConnection implements Connection {
 
   quoteTableName(name: string): string {
     return quoteTableName(name)
+  }
+
+  sanitizeAsSQLComment(comment: string): string {
+    return comment
   }
 }

@@ -183,7 +183,7 @@ describe('Table', () => {
       const manager = scope.relation.take(1)
       manager.project(new SQLLiteral('*'))
 
-      expect(manager.toSQL()).toStrictEqual(`SELECT  * FROM "users" LIMIT 1`)
+      expect(manager.toSQL()).toStrictEqual(`SELECT * FROM "users" LIMIT 1`)
     })
   })
 

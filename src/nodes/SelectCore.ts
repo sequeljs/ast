@@ -2,17 +2,19 @@ import JoinSource from './JoinSource'
 import Node from './Node'
 
 export default class SelectCore extends Node {
+  public comment: any = null
+
   public groups: any[] = []
 
   public havings: any[] = []
+
+  public optimizerHints: any = null
 
   public projections: any[] = []
 
   public setQuantifier: any = null
 
   public source: JoinSource = new JoinSource(null)
-
-  public top: any = null
 
   public wheres: any[] = []
 

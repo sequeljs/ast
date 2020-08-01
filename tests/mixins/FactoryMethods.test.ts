@@ -53,4 +53,12 @@ describe('FactoryMethods', () => {
     expect(node.name).toStrictEqual('LOWER')
     expect(node.expressions.map((e: any) => e.expr)).toStrictEqual(['one'])
   })
+
+  test('coalesce', () => {
+    const node = scope.factory.coalesce('one', 'two')
+
+    expect(node).toBeInstanceOf(NamedSQLFunction)
+    expect(node.name).toStrictEqual('COALESCE')
+    expect(node.expressions).toStrictEqual(['one', 'two'])
+  })
 })

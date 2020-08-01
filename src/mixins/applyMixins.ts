@@ -1,9 +1,4 @@
-type ConstructorTypeOf<T> = new (...args: any[]) => T
-
-export default function applyMixins<T>(
-  derivedCtor: ConstructorTypeOf<T>,
-  baseCtors: any[],
-): void {
+export default function applyMixins(derivedCtor: any, baseCtors: any[]): void {
   baseCtors.forEach((baseCtor) => {
     Object.getOwnPropertyNames(baseCtor.prototype)
       .filter((name) => name !== 'constructor')

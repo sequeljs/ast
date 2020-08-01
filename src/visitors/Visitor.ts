@@ -10,14 +10,14 @@ import type Visitable from './Visitable'
 export default abstract class Visitor {
   accept<T extends Collector<T['value']>>(
     object: Visitable | Visitable[] | null,
-    col: T,
+    collector: T,
   ): T {
-    return this.visit(object, col)
+    return this.visit(object, collector)
   }
 
   visit<T extends Collector<T['value']>>(
     object: Visitable | Visitable[] | null,
-    col: T,
+    collector: T,
   ): T {
     let objectType: string
     if (object === null) {
@@ -55,7 +55,7 @@ export default abstract class Visitor {
         `visit${objectType}`
       ].bind(this)
 
-      return visitFunction(object, col) as T
+      return visitFunction(object, collector) as T
     }
 
     throw new VisitorError(`Cannot visit ${objectType}`)

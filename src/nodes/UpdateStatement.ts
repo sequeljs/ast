@@ -10,6 +10,8 @@ export default class UpdateStatement extends Node {
 
   public limit: any = null
 
+  public offset: any = null
+
   public orders: any[] = []
 
   public relation: JoinSource | Relation | SQLLiteral | null = null

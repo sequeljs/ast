@@ -1,4 +1,3 @@
-import AliasPredication from '../mixins/AliasPredication'
 import ConcatPredication from '../mixins/ConcatPredication'
 import Expressions from '../mixins/Expressions'
 import Math from '../mixins/Math'
@@ -7,10 +6,9 @@ import Predications from '../mixins/Predications'
 import WhenPredication from '../mixins/WhenPredication'
 import applyMixins from '../mixins/applyMixins'
 
-import UnaryOperation from './UnaryOperation'
+import NodeExpression from './NodeExpression'
 
-applyMixins(UnaryOperation, [
-  AliasPredication,
+applyMixins(NodeExpression, [
   ConcatPredication,
   Expressions,
   Math,
@@ -19,4 +17,4 @@ applyMixins(UnaryOperation, [
   WhenPredication,
 ])
 
-export default UnaryOperation
+export default NodeExpression

@@ -1,15 +1,28 @@
-import Binary from './Binary'
+import Node from './Node'
 
 import type Relation from '../interfaces/Relation'
 
-export default class DeleteStatement extends Binary {
-  public limit: any
+import type JoinSource from './JoinSource'
+import type SQLLiteral from './SQLLiteral'
 
-  get relation(): Relation {
+export default class DeleteStatement extends Node {
+  public key: any = null
+
+  public limit: any = null
+
+  public offset: any = null
+
+  public orders: any[] = []
+
+  public left: JoinSource | Relation | SQLLiteral | null = null
+
+  public right: any[] = []
+
+  get relation(): JoinSource | Relation | SQLLiteral | null {
     return this.left
   }
 
-  set relation(val: Relation) {
+  set relation(val: JoinSource | Relation | SQLLiteral | null) {
     this.left = val
   }
 
@@ -21,7 +34,13 @@ export default class DeleteStatement extends Binary {
     this.right = val
   }
 
-  constructor(relation: Relation | null = null, wheres: any[] = []) {
-    super(relation, wheres)
+  constructor(
+    relation: JoinSource | Relation | SQLLiteral | null = null,
+    wheres: any[] = [],
+  ) {
+    super()
+
+    this.left = relation
+    this.right = wheres
   }
 }
