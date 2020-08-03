@@ -7,9 +7,10 @@ import AttributeInteger from '../src/attributes/Integer'
 import AttributeString from '../src/attributes/String'
 import AttributeTime from '../src/attributes/Time'
 import AttributeUndefined from '../src/attributes/Undefined'
-import attributeFor from '../src/attributes/attributeFor'
 
 import Table from '../src/Table'
+
+import attributeFor from './support/attributeFor'
 
 describe('Attributes', () => {
   test('responds to lower', () => {

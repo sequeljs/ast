@@ -1,10 +1,10 @@
-import Boolean from './Boolean'
-import Decimal from './Decimal'
-import Float from './Float'
-import Integer from './Integer'
-import String from './String'
-import Time from './Time'
-import Undefined from './Undefined'
+import Boolean from '../../src/attributes/Boolean'
+import Decimal from '../../src/attributes/Decimal'
+import Float from '../../src/attributes/Float'
+import Integer from '../../src/attributes/Integer'
+import String from '../../src/attributes/String'
+import Time from '../../src/attributes/Time'
+import Undefined from '../../src/attributes/Undefined'
 
 type AttributeType =
   | typeof Boolean

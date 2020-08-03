@@ -7,7 +7,6 @@ import Integer from '../../src/attributes/Integer'
 import String from '../../src/attributes/String'
 import Time from '../../src/attributes/Time'
 import Undefined from '../../src/attributes/Undefined'
-import attributeFor from '../../src/attributes/attributeFor'
 
 test('exports from module', () => {
   expect(mod.Attribute).toStrictEqual(Attribute)
@@ -18,5 +17,4 @@ test('exports from module', () => {
   expect(mod.String).toStrictEqual(String)
   expect(mod.Time).toStrictEqual(Time)
   expect(mod.Undefined).toStrictEqual(Undefined)
-  expect(mod.attributeFor).toStrictEqual(attributeFor)
 })
