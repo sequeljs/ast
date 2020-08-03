@@ -112,7 +112,6 @@ import type SelectManager from '../managers/SelectManager'
 import type Table from '../Table'
 
 import type Visitable from './Visitable'
-import type VisitableLiteral from './VisitableLiteral'
 
 function buildSubselect(
   key: string,
@@ -340,7 +339,7 @@ export default class ToSQL extends Visitor {
     return value?.isUnboundable?.()
   }
 
-  protected literal(thing: VisitableLiteral, col: Collector): Collector {
+  protected literal(thing: bigint | number | SQLLiteral, col: Collector): Collector {
     return col.append(String(thing))
   }
 
