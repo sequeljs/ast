@@ -1,3 +1,5 @@
+/** @internal */ /** */
+
 import type BindParam from './BindParam'
 import type SQLLiteral from './SQLLiteral'
 

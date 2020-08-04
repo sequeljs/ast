@@ -13,6 +13,9 @@ import type SQLLiteral from '../nodes/SQLLiteral'
 
 import type Visitable from '../visitors/Visitable'
 
+/**
+ * @category Attributes
+ */
 class Attribute {
   public relation: Relation
 

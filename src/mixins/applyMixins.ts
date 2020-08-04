@@ -1,3 +1,5 @@
+/** @internal */ /** */
+
 export default function applyMixins(derivedCtor: any, baseCtors: any[]): void {
   baseCtors.forEach((baseCtor) => {
     Object.getOwnPropertyNames(baseCtor.prototype)

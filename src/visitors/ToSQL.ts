@@ -113,6 +113,9 @@ import type Table from '../Table'
 
 import type Visitable from './Visitable'
 
+/**
+ * @internal
+ */
 function buildSubselect(
   key: string,
   thing: DeleteStatement | UpdateStatement,
@@ -131,6 +134,9 @@ function buildSubselect(
   return stmt
 }
 
+/**
+ * @internal
+ */
 function chunkedArray(arr: any[], chunksSize: number): any[][] {
   const chunkedArr = []
 

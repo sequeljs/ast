@@ -1,3 +1,5 @@
+/** @internal */ /** */
+
 import Attribute from '../attributes/Attribute'
 
 import SelectManager from '../managers/SelectManager'

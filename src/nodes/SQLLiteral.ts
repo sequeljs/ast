@@ -1,3 +1,5 @@
+import String from './String.base'
+
 import type AliasPredication from '../mixins/AliasPredication'
 import type Expressions from '../mixins/Expressions'
 import type OrderPredications from '../mixins/OrderPredications'

@@ -11,6 +11,9 @@ import type SelectCore from '../nodes/SelectCore'
 import type Visitable from './Visitable'
 import type Visitor from './Visitor'
 
+/**
+ * @internal
+ */
 interface CollectorConstructor {
   new (): Collector
 }
