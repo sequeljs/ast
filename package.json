@@ -45,7 +45,7 @@
     "jest": "^26.2.2",
     "rimraf": "^3.0.2",
     "ts-jest": "^26.1.4",
-    "typedoc": "^0.17.8",
+    "typedoc": "^0.18.0",
     "typedoc-plugin-markdown": "^2.4.0",
     "typedoc-plugin-no-inherit": "^1.1.10",
     "typescript": "^3.9.7"
