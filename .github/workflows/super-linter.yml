@@ -24,7 +24,7 @@ jobs:
         run: npm install
 
       - name: Run Super-Linter
-        uses: github/super-linter@V3.8.0
+        uses: github/super-linter@v3.8.3
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           VALIDATE_JSON: true
