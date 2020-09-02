@@ -1,9 +1,9 @@
 env:
   jest: true
 extends:
+  - airbnb-typescript/base
   - plugin:@typescript-eslint/eslint-recommended
   - plugin:@typescript-eslint/recommended
-  - airbnb-typescript/base
   - prettier
   - prettier/@typescript-eslint
 ignorePatterns:
