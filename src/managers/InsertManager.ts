@@ -1,10 +1,10 @@
-import InsertStatement from '../nodes/InsertStatement'
-import SQLLiteral from '../nodes/SQLLiteral'
-import ValuesList from '../nodes/ValuesList'
+import InsertStatement from '../nodes/InsertStatement.js'
+import SQLLiteral from '../nodes/SQLLiteral.js'
+import ValuesList from '../nodes/ValuesList.js'
 
-import TreeManager from './TreeManager'
+import TreeManager from './TreeManager.js'
 
-import type Table from '../Table'
+import type Table from '../Table.js'
 
 export default class InsertManager extends TreeManager<
   InsertManager,

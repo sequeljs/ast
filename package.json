@@ -43,6 +43,7 @@
     "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-import": "^2.22.0",
     "jest": "^26.4.2",
+    "jest-ts-webcompat-resolver": "^1.0.0",
     "rimraf": "^3.0.2",
     "ts-jest": "^26.3.0",
     "typedoc": "^0.19.0",

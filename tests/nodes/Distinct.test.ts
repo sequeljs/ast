@@ -1,7 +1,7 @@
-import '../helper'
+import '../helper.js'
 
-import Distinct from '../../src/nodes/Distinct'
-import Node from '../../src/nodes/Node'
+import Distinct from '../../src/nodes/Distinct.js'
+import Node from '../../src/nodes/Node.js'
 
 describe('Distinct', () => {
   describe('equality', () => {

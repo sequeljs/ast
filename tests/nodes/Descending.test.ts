@@ -1,7 +1,7 @@
-import '../helper'
+import '../helper.js'
 
-import Ascending from '../../src/nodes/Ascending'
-import Descending from '../../src/nodes/Descending'
+import Ascending from '../../src/nodes/Ascending.js'
+import Descending from '../../src/nodes/Descending.js'
 
 describe('Descending', () => {
   test('construct', () => {

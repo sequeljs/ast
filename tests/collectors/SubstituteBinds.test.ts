@@ -1,22 +1,22 @@
-import '../helper'
+import '../helper.js'
 
-import SQLString from '../../src/collectors/SQLString'
-import SubstituteBinds from '../../src/collectors/SubstituteBinds'
+import SQLString from '../../src/collectors/SQLString.js'
+import SubstituteBinds from '../../src/collectors/SubstituteBinds.js'
 
-import SelectManager from '../../src/managers/SelectManager'
+import SelectManager from '../../src/managers/SelectManager.js'
 
-import BindParam from '../../src/nodes/BindParam'
+import BindParam from '../../src/nodes/BindParam.js'
 
-import ToSQL from '../../src/visitors/ToSQL'
-import Visitable from '../../src/visitors/Visitable'
+import ToSQL from '../../src/visitors/ToSQL.js'
+import Visitable from '../../src/visitors/Visitable.js'
 
-import Table from '../../src/Table'
+import Table from '../../src/Table.js'
 
-import type Quoter from '../../src/interfaces/Quoter'
+import type Quoter from '../../src/interfaces/Quoter.js'
 
-import type SelectStatement from '../../src/nodes/SelectStatement'
+import type SelectStatement from '../../src/nodes/SelectStatement.js'
 
-import FakeRecord from '../support/FakeRecord'
+import FakeRecord from '../support/FakeRecord.js'
 
 const connection = new FakeRecord()
 const visitor = new ToSQL(connection.connection)

@@ -1,4 +1,4 @@
-import Window from './Window'
+import Window from './Window.js'
 
 export default class NamedWindow extends Window {
   public name: any

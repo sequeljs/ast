@@ -1,7 +1,7 @@
-import '../helper'
+import '../helper.js'
 
-import SQLLiteral from '../../src/nodes/SQLLiteral'
-import UpdateStatement from '../../src/nodes/UpdateStatement'
+import SQLLiteral from '../../src/nodes/SQLLiteral.js'
+import UpdateStatement from '../../src/nodes/UpdateStatement.js'
 
 describe('UpdateStatement', () => {
   describe('equality', () => {

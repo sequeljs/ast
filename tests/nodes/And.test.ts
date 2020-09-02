@@ -1,8 +1,8 @@
-import '../helper'
+import '../helper.js'
 
-import And from '../../src/nodes/And'
-import As from '../../src/nodes/As'
-import SQLLiteral from '../../src/nodes/SQLLiteral'
+import And from '../../src/nodes/And.js'
+import As from '../../src/nodes/As.js'
+import SQLLiteral from '../../src/nodes/SQLLiteral.js'
 
 describe('And', () => {
   describe('equality', () => {

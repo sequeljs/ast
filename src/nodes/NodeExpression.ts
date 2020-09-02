@@ -1,11 +1,11 @@
-import Node from './Node'
+import Node from './Node.js'
 
-import type ConcatPredication from '../mixins/ConcatPredication'
-import type Expressions from '../mixins/Expressions'
-import type Math from '../mixins/Math'
-import type OrderPredications from '../mixins/OrderPredications'
-import type Predications from '../mixins/Predications'
-import type WhenPredication from '../mixins/WhenPredication'
+import type ConcatPredication from '../mixins/ConcatPredication.js'
+import type Expressions from '../mixins/Expressions.js'
+import type Math from '../mixins/Math.js'
+import type OrderPredications from '../mixins/OrderPredications.js'
+import type Predications from '../mixins/Predications.js'
+import type WhenPredication from '../mixins/WhenPredication.js'
 
 class NodeExpression extends Node {}
 

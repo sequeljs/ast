@@ -1,9 +1,9 @@
-import Node from './Node'
+import Node from './Node.js'
 
-import type Relation from '../interfaces/Relation'
+import type Relation from '../interfaces/Relation.js'
 
-import type JoinSource from './JoinSource'
-import type SQLLiteral from './SQLLiteral'
+import type JoinSource from './JoinSource.js'
+import type SQLLiteral from './SQLLiteral.js'
 
 export default class UpdateStatement extends Node {
   public key: any = null

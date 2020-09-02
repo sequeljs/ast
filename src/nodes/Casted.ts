@@ -1,8 +1,8 @@
-import NodeExpression from './NodeExpression'
+import NodeExpression from './NodeExpression.js'
 
-import type Attribute from '../attributes/Attribute'
+import type Attribute from '../attributes/Attribute.js'
 
-import type AliasPredication from '../mixins/AliasPredication'
+import type AliasPredication from '../mixins/AliasPredication.js'
 
 class Casted extends NodeExpression {
   public readonly attribute: string | Attribute

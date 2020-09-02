@@ -1,7 +1,7 @@
-import StatementMethods from '../mixins/StatementMethods'
-import applyMixins from '../mixins/applyMixins'
+import StatementMethods from '../mixins/StatementMethods.js'
+import applyMixins from '../mixins/applyMixins.js'
 
-import DeleteManager from './DeleteManager'
+import DeleteManager from './DeleteManager.js'
 
 applyMixins(DeleteManager, [StatementMethods])
 

@@ -1,9 +1,9 @@
-import '../helper'
+import '../helper.js'
 
-import As from '../../src/nodes/As'
-import Descending from '../../src/nodes/Descending'
-import InfixOperation from '../../src/nodes/InfixOperation'
-import SQLLiteral from '../../src/nodes/SQLLiteral'
+import As from '../../src/nodes/As.js'
+import Descending from '../../src/nodes/Descending.js'
+import InfixOperation from '../../src/nodes/InfixOperation.js'
+import SQLLiteral from '../../src/nodes/SQLLiteral.js'
 
 describe('InfixOperation', () => {
   test('construct', () => {

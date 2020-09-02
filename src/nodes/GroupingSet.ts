@@ -1,7 +1,7 @@
-import Unary from './Unary'
+import Unary from './Unary.js'
 
-import type GroupingElement from './GroupingElement'
+import type GroupingElement from './GroupingElement.js'
 
-import type Visitable from '../visitors/Visitable'
+import type Visitable from '../visitors/Visitable.js'
 
 export default class GroupingSet extends Unary<GroupingElement | Visitable[]> {}

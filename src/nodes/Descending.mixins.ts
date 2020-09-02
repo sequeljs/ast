@@ -1,7 +1,7 @@
-import ReversionPredication from '../mixins/ReversionPredication'
-import applyMixins from '../mixins/applyMixins'
+import ReversionPredication from '../mixins/ReversionPredication.js'
+import applyMixins from '../mixins/applyMixins.js'
 
-import Descending from './Descending'
+import Descending from './Descending.js'
 
 applyMixins(Descending, [ReversionPredication])
 

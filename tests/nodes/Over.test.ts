@@ -1,10 +1,10 @@
-import '../helper'
+import '../helper.js'
 
-import Over from '../../src/nodes/Over'
-import SQLLiteral from '../../src/nodes/SQLLiteral'
-import Window from '../../src/nodes/Window'
+import Over from '../../src/nodes/Over.js'
+import SQLLiteral from '../../src/nodes/SQLLiteral.js'
+import Window from '../../src/nodes/Window.js'
 
-import Table from '../../src/Table'
+import Table from '../../src/Table.js'
 
 describe('Over', () => {
   test('construct', () => {

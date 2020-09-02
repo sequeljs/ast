@@ -1,13 +1,13 @@
-import SelectManager from '../managers/SelectManager'
+import SelectManager from '../managers/SelectManager.js'
 
-import InnerJoin from '../nodes/InnerJoin'
-import Join from '../nodes/Join'
-import OuterJoin from '../nodes/OuterJoin'
-import SQLLiteral from '../nodes/SQLLiteral'
+import InnerJoin from '../nodes/InnerJoin.js'
+import Join from '../nodes/Join.js'
+import OuterJoin from '../nodes/OuterJoin.js'
+import SQLLiteral from '../nodes/SQLLiteral.js'
 
-import type Attribute from '../attributes/Attribute'
+import type Attribute from '../attributes/Attribute.js'
 
-import type Relation from '../interfaces/Relation'
+import type Relation from '../interfaces/Relation.js'
 
 export default abstract class SelectPredications {
   from(): SelectManager {

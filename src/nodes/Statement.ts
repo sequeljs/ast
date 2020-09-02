@@ -1,7 +1,7 @@
-import type DeleteStatement from './DeleteStatement'
-import type InsertStatement from './InsertStatement'
-import type SelectStatement from './SelectStatement'
-import type UpdateStatement from './UpdateStatement'
+import type DeleteStatement from './DeleteStatement.js'
+import type InsertStatement from './InsertStatement.js'
+import type SelectStatement from './SelectStatement.js'
+import type UpdateStatement from './UpdateStatement.js'
 
 type Statement =
   | DeleteStatement

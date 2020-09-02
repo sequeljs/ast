@@ -1,7 +1,7 @@
-import '../helper'
+import '../helper.js'
 
-import BindParam from '../../src/nodes/BindParam'
-import Node from '../../src/nodes/Node'
+import BindParam from '../../src/nodes/BindParam.js'
+import Node from '../../src/nodes/Node.js'
 
 describe('BindParam', () => {
   describe('equality', () => {

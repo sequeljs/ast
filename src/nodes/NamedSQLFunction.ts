@@ -1,4 +1,4 @@
-import SQLFunction from './SQLFunction'
+import SQLFunction from './SQLFunction.js'
 
 export default class NamedSQLFunction extends SQLFunction {
   public name: any

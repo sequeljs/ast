@@ -1,8 +1,8 @@
-import '../helper'
+import '../helper.js'
 
-import Count from '../../src/nodes/Count'
+import Count from '../../src/nodes/Count.js'
 
-import Table from '../../src/Table'
+import Table from '../../src/Table.js'
 
 describe('Count', () => {
   describe('as', () => {

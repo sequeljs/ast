@@ -1,6 +1,6 @@
-import Ordering from './Ordering'
+import Ordering from './Ordering.js'
 
-import type ReversionPredication from '../mixins/ReversionPredication'
+import type ReversionPredication from '../mixins/ReversionPredication.js'
 
 class Descending extends Ordering {
   public readonly direction = 'desc'

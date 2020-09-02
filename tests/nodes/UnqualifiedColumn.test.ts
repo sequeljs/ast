@@ -1,8 +1,8 @@
-import '../helper'
+import '../helper.js'
 
-import UnqualifiedColumn from '../../src/nodes/UnqualifiedColumn'
+import UnqualifiedColumn from '../../src/nodes/UnqualifiedColumn.js'
 
-import Table from '../../src/Table'
+import Table from '../../src/Table.js'
 
 describe('UnqualifiedColumn', () => {
   test('construct', () => {

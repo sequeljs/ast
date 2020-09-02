@@ -1,16 +1,16 @@
-import '../helper'
+import '../helper.js'
 
-import Engine from '../../src/interfaces/Engine'
+import Engine from '../../src/interfaces/Engine.js'
 
-import InsertManager from '../../src/managers/InsertManager'
-import SelectManager from '../../src/managers/SelectManager'
+import InsertManager from '../../src/managers/InsertManager.js'
+import SelectManager from '../../src/managers/SelectManager.js'
 
-import SQLLiteral from '../../src/nodes/SQLLiteral'
-import ValuesList from '../../src/nodes/ValuesList'
+import SQLLiteral from '../../src/nodes/SQLLiteral.js'
+import ValuesList from '../../src/nodes/ValuesList.js'
 
-import Table from '../../src/Table'
+import Table from '../../src/Table.js'
 
-import FakeRecord from '../support/FakeRecord'
+import FakeRecord from '../support/FakeRecord.js'
 
 const scope: {
   engine: Engine

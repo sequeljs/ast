@@ -1,4 +1,4 @@
-import Binary from './Binary'
+import Binary from './Binary.js'
 
 export default class Regexp extends Binary {
   public caseSensitive: boolean

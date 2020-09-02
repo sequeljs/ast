@@ -1,15 +1,15 @@
-import '../helper'
+import '../helper.js'
 
-import SQLString from '../../src/collectors/SQLString'
+import SQLString from '../../src/collectors/SQLString.js'
 
-import Distinct from '../../src/nodes/Distinct'
-import SelectCore from '../../src/nodes/SelectCore'
+import Distinct from '../../src/nodes/Distinct.js'
+import SelectCore from '../../src/nodes/SelectCore.js'
 
-import ToSQL from '../../src/visitors/ToSQL'
+import ToSQL from '../../src/visitors/ToSQL.js'
 
-import SequelAST from '../../src/SequelAST'
+import SequelAST from '../../src/SequelAST.js'
 
-import type FakeRecord from '../support/FakeRecord'
+import type FakeRecord from '../support/FakeRecord.js'
 
 describe('SelectCore', () => {
   test('set quantifier', () => {

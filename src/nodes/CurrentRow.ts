@@ -1,3 +1,3 @@
-import Node from './Node'
+import Node from './Node.js'
 
 export default class CurrentRow extends Node {}

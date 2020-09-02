@@ -1,7 +1,7 @@
-import '../helper'
+import '../helper.js'
 
-import CurrentRow from '../../src/nodes/CurrentRow'
-import Node from '../../src/nodes/Node'
+import CurrentRow from '../../src/nodes/CurrentRow.js'
+import Node from '../../src/nodes/Node.js'
 
 describe('CurrentRow', () => {
   describe('equality', () => {

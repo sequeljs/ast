@@ -1,7 +1,7 @@
-import '../helper'
+import '../helper.js'
 
-import Preceding from '../../src/nodes/Preceding'
-import Range from '../../src/nodes/Range'
+import Preceding from '../../src/nodes/Preceding.js'
+import Range from '../../src/nodes/Range.js'
 
 describe('Range', () => {
   test('construct', () => {

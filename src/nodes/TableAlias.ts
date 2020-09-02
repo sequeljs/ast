@@ -1,12 +1,12 @@
-import Attribute from '../attributes/Attribute'
+import Attribute from '../attributes/Attribute.js'
 
-import Binary from './Binary'
+import Binary from './Binary.js'
 
-import type Relation from '../interfaces/Relation'
+import type Relation from '../interfaces/Relation.js'
 
-import type Visitable from '../visitors/Visitable'
+import type Visitable from '../visitors/Visitable.js'
 
-import type SQLLiteral from './SQLLiteral'
+import type SQLLiteral from './SQLLiteral.js'
 
 export default class TableAlias extends Binary {
   get name(): string | SQLLiteral {

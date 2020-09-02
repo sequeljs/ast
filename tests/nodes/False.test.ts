@@ -1,7 +1,7 @@
-import '../helper'
+import '../helper.js'
 
-import False from '../../src/nodes/False'
-import Node from '../../src/nodes/Node'
+import False from '../../src/nodes/False.js'
+import Node from '../../src/nodes/Node.js'
 
 describe('False', () => {
   describe('equality', () => {

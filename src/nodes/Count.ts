@@ -1,4 +1,4 @@
-import SQLFunction from './SQLFunction'
+import SQLFunction from './SQLFunction.js'
 
 export default class Count extends SQLFunction {
   constructor(expr: any, distinct: boolean | null = false, aliaz: any = null) {

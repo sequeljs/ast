@@ -1,5 +1,5 @@
-import type Binder from './Binder'
-import type Collector from './Collector'
+import type Binder from './Binder.js'
+import type Collector from './Collector.js'
 
 export default class Bind implements Collector<string[]> {
   private strBinds: string[] = []

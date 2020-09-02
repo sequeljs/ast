@@ -1,7 +1,7 @@
-import Ascending from '../nodes/Ascending'
-import Descending from '../nodes/Descending'
+import Ascending from '../nodes/Ascending.js'
+import Descending from '../nodes/Descending.js'
 
-import type Visitable from '../visitors/Visitable'
+import type Visitable from '../visitors/Visitable.js'
 
 export default abstract class OrderPredications {
   asc(this: Visitable): Ascending {

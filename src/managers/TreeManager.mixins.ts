@@ -1,7 +1,7 @@
-import FactoryMethods from '../mixins/FactoryMethods'
-import applyMixins from '../mixins/applyMixins'
+import FactoryMethods from '../mixins/FactoryMethods.js'
+import applyMixins from '../mixins/applyMixins.js'
 
-import TreeManager from './TreeManager'
+import TreeManager from './TreeManager.js'
 
 applyMixins(TreeManager, [FactoryMethods])
 

@@ -1,14 +1,14 @@
-import '../helper'
+import '../helper.js'
 
-import Equality from '../../src/nodes/Equality'
+import Equality from '../../src/nodes/Equality.js'
 
-import ToSQL from '../../src/visitors/ToSQL'
+import ToSQL from '../../src/visitors/ToSQL.js'
 
-import Table from '../../src/Table'
+import Table from '../../src/Table.js'
 
-import type Engine from '../../src/interfaces/Engine'
+import type Engine from '../../src/interfaces/Engine.js'
 
-import { quote, quoteColumnName, quoteTableName } from '../support/quote'
+import { quote, quoteColumnName, quoteTableName } from '../support/quote.js'
 
 describe('Equality', () => {
   describe('backwards compat', () => {
