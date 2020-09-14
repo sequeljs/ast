@@ -20,9 +20,6 @@ jobs:
         with:
           node-version: 14.x
 
-      - name: Install npm dependencies
-        run: npm install
-
       - name: Run Super-Linter
         uses: github/super-linter@v3.9.4
         env:
