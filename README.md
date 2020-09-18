@@ -8,6 +8,7 @@
 [![license](https://img.shields.io/github/license/sequeljs/ast)](https://github.com/sequeljs/ast/blob/main/LICENSE.md)
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
 [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-v2.0%20adopted-ff69b4.svg)](CODE_OF_CONDUCT.md)
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fsequeljs%2Fast.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fsequeljs%2Fast?ref=badge_shield)
 
 ## Installation
 
@@ -24,6 +25,9 @@ our
 ## License
 
 [MIT](https://github.com/sequeljs/ast/blob/main/LICENSE)
+
+
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fsequeljs%2Fast.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fsequeljs%2Fast?ref=badge_large)
 
 ## Inspiration
 
