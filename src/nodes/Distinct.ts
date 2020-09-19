@@ -1,6 +1,6 @@
-import NodeExpression from './NodeExpression'
+import NodeExpression from './NodeExpression.js'
 
-import type AliasPredication from '../mixins/AliasPredication'
+import type AliasPredication from '../mixins/AliasPredication.js'
 
 class Distinct extends NodeExpression {}
 

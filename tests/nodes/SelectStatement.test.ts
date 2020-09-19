@@ -1,6 +1,6 @@
-import '../helper'
+import '../helper.js'
 
-import SelectStatement from '../../src/nodes/SelectStatement'
+import SelectStatement from '../../src/nodes/SelectStatement.js'
 
 describe('SelectStatement', () => {
   describe('equality', () => {

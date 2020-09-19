@@ -1,15 +1,15 @@
-import SQLLiteral from '../nodes/SQLLiteral'
+import SQLLiteral from '../nodes/SQLLiteral.js'
 
-import ToSQL from './ToSQL'
+import ToSQL from './ToSQL.js'
 
-import type Collector from '../collectors/Collector'
+import type Collector from '../collectors/Collector.js'
 
-import type Connection from '../interfaces/Connection'
+import type Connection from '../interfaces/Connection.js'
 
-import type SelectCore from '../nodes/SelectCore'
+import type SelectCore from '../nodes/SelectCore.js'
 
-import type Visitable from './Visitable'
-import type Visitor from './Visitor'
+import type Visitable from './Visitable.js'
+import type Visitor from './Visitor.js'
 
 /**
  * @internal

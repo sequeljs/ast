@@ -1,8 +1,8 @@
-import FactoryMethods from '../mixins/FactoryMethods'
-import NodeMethods from '../mixins/NodeMethods'
-import applyMixins from '../mixins/applyMixins'
+import FactoryMethods from '../mixins/FactoryMethods.js'
+import NodeMethods from '../mixins/NodeMethods.js'
+import applyMixins from '../mixins/applyMixins.js'
 
-import Node from './Node'
+import Node from './Node.js'
 
 applyMixins(Node, [FactoryMethods, NodeMethods])
 

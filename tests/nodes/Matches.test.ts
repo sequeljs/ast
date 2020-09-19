@@ -1,9 +1,9 @@
-import '../helper'
+import '../helper.js'
 
-import Matches from '../../src/nodes/Matches'
-import buildQuoted from '../../src/nodes/buildQuoted'
+import Matches from '../../src/nodes/Matches.js'
+import buildQuoted from '../../src/nodes/buildQuoted.js'
 
-import Table from '../../src/Table'
+import Table from '../../src/Table.js'
 
 describe('Matches', () => {
   test('construct', () => {

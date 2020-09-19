@@ -1,8 +1,8 @@
-import '../helper'
+import '../helper.js'
 
-import Sum from '../../src/nodes/Sum'
+import Sum from '../../src/nodes/Sum.js'
 
-import Table from '../../src/Table'
+import Table from '../../src/Table.js'
 
 describe('Sum', () => {
   describe('as', () => {

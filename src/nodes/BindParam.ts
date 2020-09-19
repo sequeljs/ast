@@ -1,4 +1,4 @@
-import Node from './Node'
+import Node from './Node.js'
 
 export default class BindParam extends Node {
   public readonly value: any

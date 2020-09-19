@@ -1,12 +1,12 @@
-import Binary from './Binary'
+import Binary from './Binary.js'
 
-import type AliasPredication from '../mixins/AliasPredication'
-import type ConcatPredication from '../mixins/ConcatPredication'
-import type Expressions from '../mixins/Expressions'
-import type Math from '../mixins/Math'
-import type OrderPredications from '../mixins/OrderPredications'
-import type Predications from '../mixins/Predications'
-import type WhenPredication from '../mixins/WhenPredication'
+import type AliasPredication from '../mixins/AliasPredication.js'
+import type ConcatPredication from '../mixins/ConcatPredication.js'
+import type Expressions from '../mixins/Expressions.js'
+import type Math from '../mixins/Math.js'
+import type OrderPredications from '../mixins/OrderPredications.js'
+import type Predications from '../mixins/Predications.js'
+import type WhenPredication from '../mixins/WhenPredication.js'
 
 class InfixOperation extends Binary {
   public readonly operator: string

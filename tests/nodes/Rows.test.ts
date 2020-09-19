@@ -1,7 +1,7 @@
-import '../helper'
+import '../helper.js'
 
-import Preceding from '../../src/nodes/Preceding'
-import Rows from '../../src/nodes/Rows'
+import Preceding from '../../src/nodes/Preceding.js'
+import Rows from '../../src/nodes/Rows.js'
 
 describe('Rows', () => {
   test('construct', () => {

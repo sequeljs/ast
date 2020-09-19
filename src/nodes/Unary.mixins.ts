@@ -1,7 +1,7 @@
-import AliasPredication from '../mixins/AliasPredication'
-import applyMixins from '../mixins/applyMixins'
+import AliasPredication from '../mixins/AliasPredication.js'
+import applyMixins from '../mixins/applyMixins.js'
 
-import Unary from './Unary'
+import Unary from './Unary.js'
 
 applyMixins(Unary, [AliasPredication])
 

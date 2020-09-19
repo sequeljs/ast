@@ -1,14 +1,14 @@
-import '../helper'
+import '../helper.js'
 
-import SQLString from '../../src/collectors/SQLString'
+import SQLString from '../../src/collectors/SQLString.js'
 
-import SQLLiteral from '../../src/nodes/SQLLiteral'
+import SQLLiteral from '../../src/nodes/SQLLiteral.js'
 
-import ToSQL from '../../src/visitors/ToSQL'
-import Visitable from '../../src/visitors/Visitable'
-import Visitor from '../../src/visitors/Visitor'
+import ToSQL from '../../src/visitors/ToSQL.js'
+import Visitable from '../../src/visitors/Visitable.js'
+import Visitor from '../../src/visitors/Visitor.js'
 
-import SequelAST from '../../src/SequelAST'
+import SequelAST from '../../src/SequelAST.js'
 
 const scope: { visitor: Visitor } = {
   visitor: new (class extends Visitor {})(),

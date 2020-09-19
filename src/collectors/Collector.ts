@@ -1,4 +1,4 @@
-import type Binder from './Binder'
+import type Binder from './Binder.js'
 
 export default interface Collector<T = 'string'> {
   readonly value: T

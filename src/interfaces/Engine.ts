@@ -1,4 +1,4 @@
-import type Connection from './Connection'
+import type Connection from './Connection.js'
 
 export default interface Engine {
   connection: Connection

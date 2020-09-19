@@ -1,9 +1,9 @@
-import '../helper'
+import '../helper.js'
 
-import Case from '../../src/nodes/Case'
-import Else from '../../src/nodes/Else'
-import When from '../../src/nodes/When'
-import buildQuoted from '../../src/nodes/buildQuoted'
+import Case from '../../src/nodes/Case.js'
+import Else from '../../src/nodes/Else.js'
+import When from '../../src/nodes/When.js'
+import buildQuoted from '../../src/nodes/buildQuoted.js'
 
 describe('Case', () => {
   describe('construct', () => {

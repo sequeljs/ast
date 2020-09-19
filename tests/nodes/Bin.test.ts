@@ -1,14 +1,14 @@
-import '../helper'
+import '../helper.js'
 
-import SQLString from '../../src/collectors/SQLString'
+import SQLString from '../../src/collectors/SQLString.js'
 
-import Bin from '../../src/nodes/Bin'
-import SQLLiteral from '../../src/nodes/SQLLiteral'
+import Bin from '../../src/nodes/Bin.js'
+import SQLLiteral from '../../src/nodes/SQLLiteral.js'
 
-import MySQL from '../../src/visitors/MySQL'
-import ToSQL from '../../src/visitors/ToSQL'
+import MySQL from '../../src/visitors/MySQL.js'
+import ToSQL from '../../src/visitors/ToSQL.js'
 
-import FakeRecord from '../support/FakeRecord'
+import FakeRecord from '../support/FakeRecord.js'
 
 const engine = new FakeRecord()
 

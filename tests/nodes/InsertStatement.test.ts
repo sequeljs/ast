@@ -1,8 +1,8 @@
-import '../helper'
+import '../helper.js'
 
-import InsertStatement from '../../src/nodes/InsertStatement'
+import InsertStatement from '../../src/nodes/InsertStatement.js'
 
-import Table from '../../src/Table'
+import Table from '../../src/Table.js'
 
 describe('InsertStatement', () => {
   describe('equality', () => {

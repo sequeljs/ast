@@ -1,15 +1,15 @@
-import Attribute from './attributes/Attribute'
+import Attribute from './attributes/Attribute.js'
 
-import SQLLiteral from './nodes/SQLLiteral'
-import TableAlias from './nodes/TableAlias'
+import SQLLiteral from './nodes/SQLLiteral.js'
+import TableAlias from './nodes/TableAlias.js'
 
-import type TypeCaster from './interfaces/TypeCaster'
+import type TypeCaster from './interfaces/TypeCaster.js'
 
-import type CRUD from './mixins/CRUD'
-import type FactoryMethods from './mixins/FactoryMethods'
-import type SelectPredications from './mixins/SelectPredications'
+import type CRUD from './mixins/CRUD.js'
+import type FactoryMethods from './mixins/FactoryMethods.js'
+import type SelectPredications from './mixins/SelectPredications.js'
 
-import type Visitable from './visitors/Visitable'
+import type Visitable from './visitors/Visitable.js'
 
 class Table implements TypeCaster {
   public name: string

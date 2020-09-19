@@ -1,9 +1,9 @@
-import * as mod from '../../src/managers/mod'
-import DeleteManager from '../../src/managers/DeleteManager'
-import InsertManager from '../../src/managers/InsertManager'
-import SelectManager from '../../src/managers/SelectManager'
-import TreeManager from '../../src/managers/TreeManager'
-import UpdateManager from '../../src/managers/UpdateManager'
+import * as mod from '../../src/managers/mod.js'
+import DeleteManager from '../../src/managers/DeleteManager.js'
+import InsertManager from '../../src/managers/InsertManager.js'
+import SelectManager from '../../src/managers/SelectManager.js'
+import TreeManager from '../../src/managers/TreeManager.js'
+import UpdateManager from '../../src/managers/UpdateManager.js'
 
 test('exports from module', () => {
   expect(mod.DeleteManager).toStrictEqual(DeleteManager)

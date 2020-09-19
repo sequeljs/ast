@@ -1,4 +1,4 @@
-import Node from './Node'
+import Node from './Node.js'
 
 export default class Comment extends Node {
   public readonly values: any[]

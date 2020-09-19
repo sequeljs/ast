@@ -1,7 +1,7 @@
-import '../helper'
+import '../helper.js'
 
-import NamedSQLFunction from '../../src/nodes/NamedSQLFunction'
-import SQLLiteral from '../../src/nodes/SQLLiteral'
+import NamedSQLFunction from '../../src/nodes/NamedSQLFunction.js'
+import SQLLiteral from '../../src/nodes/SQLLiteral.js'
 
 describe('NamedSQLFunction', () => {
   test('construct', () => {

@@ -1,6 +1,6 @@
-import '../helper'
+import '../helper.js'
 
-import DeleteStatement from '../../src/nodes/DeleteStatement'
+import DeleteStatement from '../../src/nodes/DeleteStatement.js'
 
 describe('DeleteStatement', () => {
   describe('equality', () => {

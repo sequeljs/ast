@@ -1,5 +1,5 @@
-import Case from '../nodes/Case'
-import buildQuoted from '../nodes/buildQuoted'
+import Case from '../nodes/Case.js'
+import buildQuoted from '../nodes/buildQuoted.js'
 
 export default abstract class WhenPredication {
   when(other: any): Case {

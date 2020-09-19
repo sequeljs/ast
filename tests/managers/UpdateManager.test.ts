@@ -1,12 +1,12 @@
-import '../helper'
+import '../helper.js'
 
-import UpdateManager from '../../src/managers/UpdateManager'
+import UpdateManager from '../../src/managers/UpdateManager.js'
 
-import BindParam from '../../src/nodes/BindParam'
-import JoinSource from '../../src/nodes/JoinSource'
-import SQLLiteral from '../../src/nodes/SQLLiteral'
+import BindParam from '../../src/nodes/BindParam.js'
+import JoinSource from '../../src/nodes/JoinSource.js'
+import SQLLiteral from '../../src/nodes/SQLLiteral.js'
 
-import Table from '../../src/Table'
+import Table from '../../src/Table.js'
 
 const scope: { table: Table; updateManager: UpdateManager } = {
   table: new Table(''),

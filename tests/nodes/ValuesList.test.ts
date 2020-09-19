@@ -1,6 +1,6 @@
-import '../helper'
+import '../helper.js'
 
-import ValuesList from '../../src/nodes/ValuesList'
+import ValuesList from '../../src/nodes/ValuesList.js'
 
 describe('ValuesList', () => {
   test('construct', () => {

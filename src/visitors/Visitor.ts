@@ -1,11 +1,11 @@
-import Attribute from '../attributes/Attribute'
+import Attribute from '../attributes/Attribute.js'
 
-import VisitorError from '../errors/VisitorError'
+import VisitorError from '../errors/VisitorError.js'
 
-import type Collector from '../collectors/Collector'
+import type Collector from '../collectors/Collector.js'
 
-import type VisitFunction from './VisitFunction'
-import type Visitable from './Visitable'
+import type VisitFunction from './VisitFunction.js'
+import type Visitable from './Visitable.js'
 
 export default abstract class Visitor {
   accept<T extends Collector<T['value']>>(

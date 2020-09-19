@@ -1,6 +1,6 @@
-import NodeExpression from './NodeExpression'
+import NodeExpression from './NodeExpression.js'
 
-import type AliasPredication from '../mixins/AliasPredication'
+import type AliasPredication from '../mixins/AliasPredication.js'
 
 class Binary<L = any, R = any> extends NodeExpression {
   public left: L

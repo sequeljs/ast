@@ -1,6 +1,6 @@
 /** @internal */ /** */
 
-import type ValuesListRowValue from './ValuesListRowValue'
+import type ValuesListRowValue from './ValuesListRowValue.js'
 
 type ValuesListRow = { [k: string]: ValuesListRowValue } | ValuesListRowValue[]
 

@@ -1,11 +1,11 @@
-import type Attribute from '../attributes/Attribute'
+import type Attribute from '../attributes/Attribute.js'
 
-import type Relation from '../interfaces/Relation'
+import type Relation from '../interfaces/Relation.js'
 
-import type SelectManager from '../managers/SelectManager'
+import type SelectManager from '../managers/SelectManager.js'
 
-import type Node from '../nodes/Node'
-import type SQLLiteral from '../nodes/SQLLiteral'
+import type Node from '../nodes/Node.js'
+import type SQLLiteral from '../nodes/SQLLiteral.js'
 
 type Visitable =
   | bigint

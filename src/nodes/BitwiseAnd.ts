@@ -1,4 +1,4 @@
-import InfixOperation from './InfixOperation'
+import InfixOperation from './InfixOperation.js'
 
 export default class BitwiseAnd extends InfixOperation {
   constructor(left: any, right: any) {

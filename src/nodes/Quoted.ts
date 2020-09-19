@@ -1,4 +1,4 @@
-import Unary from './Unary'
+import Unary from './Unary.js'
 
 export default class Quoted extends Unary<any> {
   protected isInfinite(): boolean {

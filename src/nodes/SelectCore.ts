@@ -1,5 +1,5 @@
-import JoinSource from './JoinSource'
-import Node from './Node'
+import JoinSource from './JoinSource.js'
+import Node from './Node.js'
 
 export default class SelectCore extends Node {
   public comment: any = null

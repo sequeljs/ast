@@ -1,5 +1,5 @@
-import Ascending from '../nodes/Ascending'
-import Descending from '../nodes/Descending'
+import Ascending from '../nodes/Ascending.js'
+import Descending from '../nodes/Descending.js'
 
 export default abstract class ReversionPredication {
   reverse(this: Ascending): Descending

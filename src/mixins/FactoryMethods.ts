@@ -1,22 +1,22 @@
-import And from '../nodes/And'
-import False from '../nodes/False'
-import Grouping from '../nodes/Grouping'
-import InnerJoin from '../nodes/InnerJoin'
-import NamedSQLFunction from '../nodes/NamedSQLFunction'
-import On from '../nodes/On'
-import StringJoin from '../nodes/StringJoin'
-import TableAlias from '../nodes/TableAlias'
-import True from '../nodes/True'
-import buildQuoted from '../nodes/buildQuoted'
+import And from '../nodes/And.js'
+import False from '../nodes/False.js'
+import Grouping from '../nodes/Grouping.js'
+import InnerJoin from '../nodes/InnerJoin.js'
+import NamedSQLFunction from '../nodes/NamedSQLFunction.js'
+import On from '../nodes/On.js'
+import StringJoin from '../nodes/StringJoin.js'
+import TableAlias from '../nodes/TableAlias.js'
+import True from '../nodes/True.js'
+import buildQuoted from '../nodes/buildQuoted.js'
 
-import Relation from '../interfaces/Relation'
+import Relation from '../interfaces/Relation.js'
 
-import FullOuterJoin from '../nodes/FullOuterJoin'
-import OuterJoin from '../nodes/OuterJoin'
-import RightOuterJoin from '../nodes/RightOuterJoin'
-import SQLLiteral from '../nodes/SQLLiteral'
+import FullOuterJoin from '../nodes/FullOuterJoin.js'
+import OuterJoin from '../nodes/OuterJoin.js'
+import RightOuterJoin from '../nodes/RightOuterJoin.js'
+import SQLLiteral from '../nodes/SQLLiteral.js'
 
-import Join from '../nodes/Join'
+import Join from '../nodes/Join.js'
 
 export default abstract class FactoryMethods {
   coalesce(...exprs: any[]): NamedSQLFunction {
