@@ -1,0 +1,33 @@
+{
+  "name": "@sequeljs/ast",
+  "build": {
+    "context": "..",
+    "dockerfile": "Dockerfile"
+  },
+  "extensions": [
+    "christian-kohler.npm-intellisense",
+    "christian-kohler.path-intellisense",
+    "dbaeumer.vscode-eslint",
+    "eamodio.gitlens",
+    "editorconfig.editorconfig",
+    "eg2.vscode-npm-script",
+    "esbenp.prettier-vscode",
+    "hbenl.vscode-test-explorer",
+    "kavod-io.vscode-jest-test-adapter",
+    "pflannery.vscode-versionlens",
+    "redhat.vscode-yaml",
+    "tyriar.sort-lines",
+    "visualstudioexptteam.vscodeintellicode",
+    "xyz.local-history"
+  ],
+  "mounts": [
+    "source=${localEnv:HOME}${localEnv:USERPROFILE}/.ssh,target=/home/node/.ssh,type=bind"
+  ],
+  "postCreateCommand": "npm install --prefix /workspace",
+  "remoteUser": "node",
+  "settings": {
+    "terminal.integrated.shell.linux": "/bin/ash"
+  },
+  "workspaceFolder": "/workspace",
+  "workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind,consistency=cached"
+}
