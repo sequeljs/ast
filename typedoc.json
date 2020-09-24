@@ -3,7 +3,6 @@
   "inputFiles": ["./src/index.ts"],
   "mode": "modules",
   "out": "docs",
-  "skipSidebar": true,
   "stripInternal": true,
   "theme": "docusaurus2"
 }
