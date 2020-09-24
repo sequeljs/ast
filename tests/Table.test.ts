@@ -224,9 +224,9 @@ describe('Table', () => {
     expect(scope.relation.tableName).toStrictEqual('users')
   })
 
-  describe('[]', () => {
-    describe('when given a Symbol', () => {
-      test('manufactures an attribute if the symbol names an attribute within the relation', () => {
+  describe('get', () => {
+    describe('when given a string', () => {
+      test('manufactures an attribute if the string names an attribute within the relation', () => {
         const column = scope.relation.get('id')
 
         expect(column.name).toStrictEqual('id')
