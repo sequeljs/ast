@@ -26,14 +26,14 @@ describe('Table', () => {
     scope.relation = new Table('users')
   })
 
-  test('should create join nodes', () => {
+  test('should create StringJoin nodes', () => {
     const join = scope.relation.createStringJoin('foo')
 
     expect(join).toBeInstanceOf(StringJoin)
     expect(join.left).toStrictEqual('foo')
   })
 
-  test('should create join nodes', () => {
+  test('should create InnerJoin nodes', () => {
     const join = scope.relation.createJoin('foo', 'bar')
 
     expect(join).toBeInstanceOf(InnerJoin)
@@ -41,7 +41,7 @@ describe('Table', () => {
     expect(join.right).toStrictEqual('bar')
   })
 
-  test('should create join nodes with a klass', () => {
+  test('should create FullOuterJoin nodes with a klass', () => {
     const join = scope.relation.createJoin('foo', 'bar', FullOuterJoin)
 
     expect(join).toBeInstanceOf(FullOuterJoin)
@@ -49,7 +49,7 @@ describe('Table', () => {
     expect(join.right).toStrictEqual('bar')
   })
 
-  test('should create join nodes with a klass', () => {
+  test('should create OuterJoin nodes with a klass', () => {
     const join = scope.relation.createJoin('foo', 'bar', OuterJoin)
 
     expect(join).toBeInstanceOf(OuterJoin)
@@ -57,7 +57,7 @@ describe('Table', () => {
     expect(join.right).toStrictEqual('bar')
   })
 
-  test('should create join nodes with a klass', () => {
+  test('should create RightOuterJoin nodes with a klass', () => {
     const join = scope.relation.createJoin('foo', 'bar', RightOuterJoin)
 
     expect(join).toBeInstanceOf(RightOuterJoin)
