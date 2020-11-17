@@ -27,7 +27,7 @@ jobs:
         run: npm run docs:build
 
       - name: Upload build
-        uses: actions/upload-artifact@v2.2.0
+        uses: actions/upload-artifact@v2.2.1
         with:
           name: docs
           path: ./docs/
