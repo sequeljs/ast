@@ -19,7 +19,7 @@ jobs:
           - types
     steps:
       - name: Checkout source code
-        uses: actions/checkout@v2.3.3
+        uses: actions/checkout@v2.3.4
 
       - name: Setup Node.js
         uses: actions/setup-node@v2.1.2
