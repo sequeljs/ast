@@ -1,5 +1,5 @@
 # Base image
-FROM node:15.3.0-alpine
+FROM node:15.4.0-alpine
 
 # Install Git
 RUN apk add --no-cache git
