@@ -1,9 +1,6 @@
 {
   "name": "@sequeljs/ast",
-  "build": {
-    "context": "..",
-    "dockerfile": "Dockerfile"
-  },
+  "image": "sequeljs/devcontainer:latest",
   "extensions": [
     "christian-kohler.npm-intellisense",
     "christian-kohler.path-intellisense",
@@ -21,13 +18,16 @@
     "xyz.local-history"
   ],
   "mounts": [
-    "source=${localEnv:HOME}${localEnv:USERPROFILE}/.ssh,target=/home/node/.ssh,type=bind"
+    "source=${localEnv:HOME}${localEnv:USERPROFILE}/.npmrc,target=/home/node/.npmrc,type=bind",
+    "source=${localEnv:HOME}${localEnv:USERPROFILE}/.ssh,target=/home/node/.ssh,type=bind",
+    "source=sequeljs-ast-vscode,target=/node/.vscode-server/extensions,type=volume",
+    "source=sequeljs-ast-vscode-insiders,target=/node/.vscode-server-insiders/extensions,type=volume"
   ],
-  "postCreateCommand": "npm install --prefix /workspace",
+  "postCreateCommand": "npm install",
   "remoteUser": "node",
   "settings": {
-    "terminal.integrated.shell.linux": "/bin/ash"
+    "terminal.integrated.shell.linux": "/bin/bash"
   },
-  "workspaceFolder": "/workspace",
-  "workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind,consistency=cached"
+  "workspaceFolder": "/sequeljs/ast",
+  "workspaceMount": "source=${localWorkspaceFolder},target=/sequeljs/ast,type=bind,consistency=cached"
 }
