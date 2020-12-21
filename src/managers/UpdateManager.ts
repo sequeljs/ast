@@ -23,9 +23,10 @@ class UpdateManager extends TreeManager<UpdateManager, UpdateStatement> {
     ) {
       this.ast.values = [values]
     } else {
-      this.ast.values = values.map(([column, value]: [any, any]) => {
-        return new Assignment(new UnqualifiedColumn(column), value)
-      })
+      this.ast.values = values.map(
+        ([column, value]: [any, any]) =>
+          new Assignment(new UnqualifiedColumn(column), value),
+      )
     }
 
     return this

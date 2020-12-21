@@ -256,9 +256,7 @@ class SelectManager extends TreeManager<SelectManager, SelectStatement> {
 
   order(...expr: any[]): SelectManager {
     this.ast.orders.push(
-      ...expr.map((e) => {
-        return typeof e === 'string' ? new SQLLiteral(e) : e
-      }),
+      ...expr.map((e) => (typeof e === 'string' ? new SQLLiteral(e) : e)),
     )
 
     return this
