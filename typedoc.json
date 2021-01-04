@@ -1,8 +1,6 @@
 {
+  "entryPoints": ["./src/index.ts"],
   "exclude": ["**/*.mixins.ts"],
-  "inputFiles": ["./src/index.ts"],
-  "mode": "modules",
   "out": "docs",
-  "stripInternal": true,
   "theme": "docusaurus2"
 }
