@@ -33,7 +33,7 @@ jobs:
         run: npm run build:${{ matrix.module }}
 
       - name: Upload build
-        uses: actions/upload-artifact@v2.2.1
+        uses: actions/upload-artifact@v2.2.2
         with:
           name: ${{ matrix.module }}
           path: ./${{ matrix.module }}/
