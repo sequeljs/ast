@@ -13,12 +13,17 @@ import type NodeMethods from '../mixins/NodeMethods.js'
 class Node {
   private readonly __sequelASTUnquotable = true
 
-  toSQL(engine: Engine | null = SequelAST.engine): any {
-    if (!engine) {
+  toSQL(engine: Engine | null | undefined = undefined): any {
+    let currentEngine = engine
+    if (typeof currentEngine === 'undefined') {
+      currentEngine = SequelAST.engine
+    }
+
+    if (!currentEngine) {
       throw new EngineNotSetError()
     }
 
-    if (!engine.connection.visitor) {
+    if (!currentEngine.connection.visitor) {
       throw new VisitorNotSetError()
     }
 
@@ -26,7 +31,7 @@ class Node {
 
     collector = new SQLString()
 
-    collector = engine.connection.visitor.accept(this, collector)
+    collector = currentEngine.connection.visitor.accept(this, collector)
 
     return collector.value
   }

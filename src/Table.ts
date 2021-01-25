@@ -38,8 +38,8 @@ class Table implements TypeCaster {
     this.tableAlias = tableAlias
   }
 
-  alias(name = `${this.name}_2`): TableAlias {
-    return new TableAlias(this, name)
+  alias(name: string | null = null): TableAlias {
+    return new TableAlias(this, name ?? `${this.name}_2`)
   }
 
   get(name: string | SQLLiteral): Attribute {

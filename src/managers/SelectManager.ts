@@ -300,8 +300,13 @@ class SelectManager extends TreeManager<SelectManager, SelectStatement> {
     return new UnionAll(this.ast, other.ast)
   }
 
-  whereSQL(engine: Engine | null = SequelAST.engine): SQLLiteral | null {
-    if (!engine) {
+  whereSQL(engine: Engine | null | undefined = undefined): SQLLiteral | null {
+    let currentEngine = engine
+    if (typeof currentEngine === 'undefined') {
+      currentEngine = SequelAST.engine
+    }
+
+    if (!currentEngine) {
       throw new EngineNotSetError()
     }
 
@@ -309,11 +314,14 @@ class SelectManager extends TreeManager<SelectManager, SelectStatement> {
       return null
     }
 
-    if (!engine.connection.visitor) {
+    if (!currentEngine.connection.visitor) {
       throw new VisitorNotSetError()
     }
 
-    const visitor = new WhereSQL(engine.connection.visitor, engine.connection)
+    const visitor = new WhereSQL(
+      currentEngine.connection.visitor,
+      currentEngine.connection,
+    )
 
     return new SQLLiteral(visitor.accept(this.ctx, new SQLString()).value)
   }

@@ -20,12 +20,17 @@ abstract class TreeManager<M extends TreeManager<M, S>, S extends Statement> {
     this.ast = ast
   }
 
-  toSQL(engine: Engine | null = SequelAST.engine): string | null {
-    if (!engine) {
+  toSQL(engine: Engine | null | undefined = undefined): string | null {
+    let currentEngine = engine
+    if (typeof currentEngine === 'undefined') {
+      currentEngine = SequelAST.engine
+    }
+
+    if (!currentEngine) {
       throw new EngineNotSetError()
     }
 
-    if (!engine.connection.visitor) {
+    if (!currentEngine.connection.visitor) {
       throw new VisitorNotSetError()
     }
 
@@ -33,7 +38,7 @@ abstract class TreeManager<M extends TreeManager<M, S>, S extends Statement> {
 
     collector = new SQLString()
 
-    collector = engine.connection.visitor.accept(
+    collector = currentEngine.connection.visitor.accept(
       this.ast,
       collector,
     ) as SQLString
