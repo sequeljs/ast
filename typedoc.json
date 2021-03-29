@@ -1,6 +1,4 @@
 {
   "entryPoints": ["./src/index.ts"],
-  "exclude": ["**/*.mixins.ts"],
-  "out": "docs",
-  "theme": "docusaurus2"
+  "out": "docs"
 }
