@@ -5,13 +5,20 @@ updates:
     directory: /
     schedule:
       interval: daily
+    commit-message:
+      prefix: "ci(github-actions): "
 
   - package-ecosystem: npm
     directory: /
     schedule:
       interval: daily
+    commit-message:
+      prefix: "chore(dependencies): "
+      prefix-development: "chore(dev-dependencies): "
 
   - package-ecosystem: docker
     directory: /.devcontainer/
     schedule:
       interval: daily
+    commit-message:
+      prefix: "build(docker): "
