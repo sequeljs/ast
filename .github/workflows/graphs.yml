@@ -33,7 +33,7 @@ jobs:
         run: npm run graphs:build
 
       - name: Upload build
-        uses: actions/upload-artifact@v2.2.3
+        uses: actions/upload-artifact@v2.2.4
         with:
           name: graphs
           path: ./graphs/
