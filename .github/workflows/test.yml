@@ -27,12 +27,12 @@ jobs:
         run: npm run test -- --coverage
 
       - name: Start coverage report
-        uses: coverallsapp/github-action@v1.1.2
+        uses: coverallsapp/github-action@1.1.3
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Finish coverage report
-        uses: coverallsapp/github-action@v1.1.2
+        uses: coverallsapp/github-action@1.1.3
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           parallel-finished: true
