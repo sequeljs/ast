@@ -42,7 +42,7 @@
     "eslint-config-airbnb-typescript": "16.0.0",
     "eslint-config-prettier": "8.3.0",
     "eslint-plugin-import": "2.25.3",
-    "jest": "27.3.1",
+    "jest": "27.4.0",
     "jest-ts-webcompat-resolver": "1.0.0",
     "madge": "5.0.1",
     "rimraf": "3.0.2",
