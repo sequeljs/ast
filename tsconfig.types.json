@@ -3,7 +3,7 @@
   "compilerOptions": {
     "target": "ES2015",
     "declaration": true,
-    "declarationDir": "./types",
+    "declarationDir": "./dist/types",
     "declarationMap": true,
     "emitDeclarationOnly": true,
     "module": "ES2015"

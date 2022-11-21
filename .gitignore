@@ -6,11 +6,9 @@
 #   git config --global core.excludesfile "~/.gitignore_global"
 
 ### Build ###
-cjs
+dist
 docs
-es
 graphs
-types
 
 ### Node.js ###
 *.log

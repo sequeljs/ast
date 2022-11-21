@@ -23,17 +23,19 @@
     "email": "rodrigo.sc.na@gmail.com",
     "url": "https://github.com/rodrigoscna"
   },
+  "exports": {
+    "import": "./dist/es/index.js",
+    "require": "./dist/cjs/index.js"
+  },
   "type": "module",
-  "main": "./cjs/index.js",
-  "module": "./es/index.js",
-  "types": "./types/index.d.ts",
+  "types": "./dist/types/index.d.ts",
   "files": [
-    "cjs",
-    "es",
-    "src",
-    "types"
+    "dist",
+    "src"
   ],
   "devDependencies": {
+    "@commitlint/cli": "17.2.0",
+    "@commitlint/config-conventional": "17.2.0",
     "@types/jest": "27.5.0",
     "@typescript-eslint/eslint-plugin": "5.43.0",
     "@typescript-eslint/parser": "5.43.0",
@@ -42,9 +44,11 @@
     "eslint-config-airbnb-typescript": "17.0.0",
     "eslint-config-prettier": "8.5.0",
     "eslint-plugin-import": "2.26.0",
+    "husky": "8.0.2",
     "jest": "27.5.1",
-    "jest-ts-webcompat-resolver": "1.0.0",
     "madge": "5.0.1",
+    "prettier": "2.7.1",
+    "pretty-quick": "3.1.3",
     "rimraf": "3.0.2",
     "ts-jest": "27.1.4",
     "typedoc": "0.23.21",
@@ -61,8 +65,9 @@
     "graphs:build": "npm run graphs:build:dependency-tree",
     "graphs:build:dependency-tree": "madge --image ./graphs/dependency-tree.svg ./src/index.ts",
     "graphs:clean": "rimraf graphs && mkdir graphs",
-    "lint": "eslint ./{src,tests}/**/*.{js,jsx,ts,tsx}",
-    "prepare": "npm run clean && npm run build",
+    "husky:install": "husky install",
+    "lint": "eslint --max-warnings=0 ./{src,tests}/*.{js,jsx,ts,tsx}",
+    "prepare": "npm run husky:install && npm run clean && npm run build",
     "pretest": "npm run lint",
     "test": "jest",
     "test:coverage": "npm run test -- --coverage",

@@ -8,5 +8,5 @@
     "sourceMap": true,
     "strict": true
   },
-  "include": ["src/**/*"]
+  "include": ["src/**/*", "commitlint.config.js"]
 }
