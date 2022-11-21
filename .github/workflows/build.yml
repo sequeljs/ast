@@ -20,12 +20,12 @@ jobs:
           - types
     steps:
       - name: Checkout source code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v3.1.0
 
       - name: Setup Node.js
         uses: actions/setup-node@v3.5.1
         with:
-          node-version: 14.x
+          node-version: 18.x
 
       - name: Install npm dependencies
         run: npm install
@@ -34,7 +34,7 @@ jobs:
         run: npm run build:${{ matrix.module }}
 
       - name: Upload build
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v3.1.1
         with:
           name: ${{ matrix.module }}
           path: ./${{ matrix.module }}/
@@ -43,12 +43,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout source code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v3.1.0
 
       - name: Setup Node.js
         uses: actions/setup-node@v3.5.1
         with:
-          node-version: 14.x
+          node-version: 18.x
 
       - name: Install npm dependencies
         run: npm install
@@ -57,7 +57,7 @@ jobs:
         run: npm run docs:build
 
       - name: Upload docs
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v3.1.1
         with:
           name: docs
           path: ./docs/
