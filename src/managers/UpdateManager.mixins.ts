@@ -1,7 +1,7 @@
-import StatementMethods from '../mixins/StatementMethods.js'
-import applyMixins from '../mixins/applyMixins.js'
+import StatementMethods from '../mixins/StatementMethods'
+import applyMixins from '../mixins/applyMixins'
 
-import UpdateManager from './UpdateManager.js'
+import UpdateManager from './UpdateManager'
 
 applyMixins(UpdateManager, [StatementMethods])
 

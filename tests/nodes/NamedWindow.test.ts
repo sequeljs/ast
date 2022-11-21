@@ -1,6 +1,6 @@
-import '../helper.js'
+import '../helper'
 
-import NamedWindow from '../../src/nodes/NamedWindow.js'
+import NamedWindow from '../../src/nodes/NamedWindow'
 
 describe('NamedWindow', () => {
   describe('equality', () => {

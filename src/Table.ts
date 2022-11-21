@@ -1,15 +1,15 @@
-import Attribute from './attributes/Attribute.js'
+import Attribute from './attributes/Attribute'
 
-import SQLLiteral from './nodes/SQLLiteral.js'
-import TableAlias from './nodes/TableAlias.js'
+import SQLLiteral from './nodes/SQLLiteral'
+import TableAlias from './nodes/TableAlias'
 
-import type TypeCaster from './interfaces/TypeCaster.js'
+import type TypeCaster from './interfaces/TypeCaster'
 
-import type CRUD from './mixins/CRUD.js'
-import type FactoryMethods from './mixins/FactoryMethods.js'
-import type SelectPredications from './mixins/SelectPredications.js'
+import type CRUD from './mixins/CRUD'
+import type FactoryMethods from './mixins/FactoryMethods'
+import type SelectPredications from './mixins/SelectPredications'
 
-import type Visitable from './visitors/Visitable.js'
+import type Visitable from './visitors/Visitable'
 
 class Table implements TypeCaster {
   public name: string
@@ -25,6 +25,7 @@ class Table implements TypeCaster {
   constructor(
     name: string,
     as: TableAlias | string | null = null,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     typeCaster: any = null,
   ) {
     this.name = name

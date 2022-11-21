@@ -1,3 +1,3 @@
-import VisitorError from './VisitorError.js'
+import VisitorError from './VisitorError'
 
 export default class VisitorNotSetError extends VisitorError {}

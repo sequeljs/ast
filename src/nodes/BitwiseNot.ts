@@ -1,4 +1,4 @@
-import UnaryOperation from './UnaryOperation.js'
+import UnaryOperation from './UnaryOperation'
 
 export default class BitwiseNot extends UnaryOperation {
   constructor(operand: any) {

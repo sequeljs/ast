@@ -1,7 +1,7 @@
-import AliasPredication from '../mixins/AliasPredication.js'
-import applyMixins from '../mixins/applyMixins.js'
+import AliasPredication from '../mixins/AliasPredication'
+import applyMixins from '../mixins/applyMixins'
 
-import Over from './Over.js'
+import Over from './Over'
 
 applyMixins(Over, [AliasPredication])
 

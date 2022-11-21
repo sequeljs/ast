@@ -1,7 +1,7 @@
-import Unary from './Unary.js'
+import Unary from './Unary'
 
-import type NullsFirstPredication from '../mixins/NullsFirstPredication.js'
-import type NullsLastPredication from '../mixins/NullsLastPredication.js'
+import type NullsFirstPredication from '../mixins/NullsFirstPredication'
+import type NullsLastPredication from '../mixins/NullsLastPredication'
 
 class Ordering extends Unary {}
 

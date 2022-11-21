@@ -1,5 +1,5 @@
-import Binary from './Binary.js'
+import Binary from './Binary'
 
-import type Visitable from '../visitors/Visitable.js'
+import type Visitable from '../visitors/Visitable'
 
 export default class NotIn extends Binary<any, Visitable | Visitable[]> {}

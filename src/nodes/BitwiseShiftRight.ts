@@ -1,4 +1,4 @@
-import InfixOperation from './InfixOperation.js'
+import InfixOperation from './InfixOperation'
 
 export default class BitwiseShiftRight extends InfixOperation {
   constructor(left: any, right: any) {

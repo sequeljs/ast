@@ -1,7 +1,7 @@
 /** @internal */ /** */
 
-import type BindParam from './BindParam.js'
-import type SQLLiteral from './SQLLiteral.js'
+import type BindParam from './BindParam'
+import type SQLLiteral from './SQLLiteral'
 
 type ValuesListRowValue = number | string | BindParam | SQLLiteral
 

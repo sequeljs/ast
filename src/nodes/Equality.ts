@@ -1,4 +1,4 @@
-import Binary from './Binary.js'
+import Binary from './Binary'
 
 export default class Equality<L = any, R = any> extends Binary<L, R> {
   public operator = '=='

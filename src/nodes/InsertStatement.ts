@@ -1,8 +1,8 @@
-import Node from './Node.js'
+import Node from './Node'
 
-import type Attribute from '../attributes/Attribute.js'
+import type Attribute from '../attributes/Attribute'
 
-import type Relation from '../interfaces/Relation.js'
+import type Relation from '../interfaces/Relation'
 
 export default class InsertStatement extends Node {
   public columns: Attribute[] = []

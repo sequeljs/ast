@@ -1,6 +1,6 @@
-import type SQLLiteral from '../nodes/SQLLiteral.js'
+import type SQLLiteral from '../nodes/SQLLiteral'
 
-import type Visitable from '../visitors/Visitable.js'
+import type Visitable from '../visitors/Visitable'
 
 export default interface TypeCaster {
   isAbleToTypeCast(): boolean

@@ -1,9 +1,9 @@
-import Node from './Node.js'
+import Node from './Node'
 
-import type Relation from '../interfaces/Relation.js'
+import type Relation from '../interfaces/Relation'
 
-import type JoinSource from './JoinSource.js'
-import type SQLLiteral from './SQLLiteral.js'
+import type JoinSource from './JoinSource'
+import type SQLLiteral from './SQLLiteral'
 
 export default class DeleteStatement extends Node {
   public key: any = null

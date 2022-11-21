@@ -1,3 +1,3 @@
-import Unary from './Unary.js'
+import Unary from './Unary'
 
 export default class Grouping extends Unary {}

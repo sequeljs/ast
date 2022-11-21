@@ -1,13 +1,13 @@
-import AliasPredication from '../mixins/AliasPredication.js'
-import ConcatPredication from '../mixins/ConcatPredication.js'
-import Expressions from '../mixins/Expressions.js'
-import Math from '../mixins/Math.js'
-import OrderPredications from '../mixins/OrderPredications.js'
-import Predications from '../mixins/Predications.js'
-import WhenPredication from '../mixins/WhenPredication.js'
-import applyMixins from '../mixins/applyMixins.js'
+import AliasPredication from '../mixins/AliasPredication'
+import ConcatPredication from '../mixins/ConcatPredication'
+import Expressions from '../mixins/Expressions'
+import Math from '../mixins/Math'
+import OrderPredications from '../mixins/OrderPredications'
+import Predications from '../mixins/Predications'
+import WhenPredication from '../mixins/WhenPredication'
+import applyMixins from '../mixins/applyMixins'
 
-import InfixOperation from './InfixOperation.js'
+import InfixOperation from './InfixOperation'
 
 applyMixins(InfixOperation, [
   AliasPredication,

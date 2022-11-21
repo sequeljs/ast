@@ -1,6 +1,6 @@
-import Unary from './Unary.js'
+import Unary from './Unary'
 
-import type Attribute from '../attributes/Attribute.js'
+import type Attribute from '../attributes/Attribute'
 
 export default class UnqualifiedColumn extends Unary<Attribute> {
   get attribute(): this['expr'] {

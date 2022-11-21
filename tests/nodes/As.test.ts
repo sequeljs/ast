@@ -1,9 +1,9 @@
-import '../helper.js'
+import '../helper'
 
-import As from '../../src/nodes/As.js'
-import SQLLiteral from '../../src/nodes/SQLLiteral.js'
+import As from '../../src/nodes/As'
+import SQLLiteral from '../../src/nodes/SQLLiteral'
 
-import Table from '../../src/Table.js'
+import Table from '../../src/Table'
 
 describe('As', () => {
   describe('#as', () => {

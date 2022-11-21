@@ -1,4 +1,4 @@
-import Join from './Join.js'
+import Join from './Join'
 
 export default class StringJoin extends Join {
   constructor(left: any, right: any = null) {

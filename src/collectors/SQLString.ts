@@ -1,5 +1,5 @@
-import type Binder from './Binder.js'
-import type Collector from './Collector.js'
+import type Binder from './Binder'
+import type Collector from './Collector'
 
 export default class SQLString implements Collector<string> {
   private bindIndex = 1

@@ -1,3 +1,3 @@
-import Matches from './Matches.js'
+import Matches from './Matches'
 
 export default class DoesNotMatch extends Matches {}

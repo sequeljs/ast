@@ -1,3 +1,3 @@
-import Ordering from './Ordering.js'
+import Ordering from './Ordering'
 
 export default class NullsFirst extends Ordering {}

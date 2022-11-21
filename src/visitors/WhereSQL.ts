@@ -1,15 +1,15 @@
-import SQLLiteral from '../nodes/SQLLiteral.js'
+import SQLLiteral from '../nodes/SQLLiteral'
 
-import ToSQL from './ToSQL.js'
+import ToSQL from './ToSQL'
 
-import type Collector from '../collectors/Collector.js'
+import type Collector from '../collectors/Collector'
 
-import type Connection from '../interfaces/Connection.js'
+import type Connection from '../interfaces/Connection'
 
-import type SelectCore from '../nodes/SelectCore.js'
+import type SelectCore from '../nodes/SelectCore'
 
-import type Visitable from './Visitable.js'
-import type Visitor from './Visitor.js'
+import type Visitable from './Visitable'
+import type Visitor from './Visitor'
 
 /**
  * @internal
@@ -33,7 +33,8 @@ export default class WhereSQL extends ToSQL {
     collector.append(' WHERE ')
 
     const wheres = thing.wheres.map((where: Visitable) => {
-      const CollectorClass: CollectorConstructor = col.constructor as CollectorConstructor
+      const CollectorClass: CollectorConstructor =
+        col.constructor as CollectorConstructor
       const innerCollector = new CollectorClass()
 
       return new SQLLiteral(

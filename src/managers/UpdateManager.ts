@@ -1,11 +1,11 @@
-import Assignment from '../nodes/Assignment.js'
-import SQLLiteral from '../nodes/SQLLiteral.js'
-import UnqualifiedColumn from '../nodes/UnqualifiedColumn.js'
-import UpdateStatement from '../nodes/UpdateStatement.js'
+import Assignment from '../nodes/Assignment'
+import SQLLiteral from '../nodes/SQLLiteral'
+import UnqualifiedColumn from '../nodes/UnqualifiedColumn'
+import UpdateStatement from '../nodes/UpdateStatement'
 
-import TreeManager from './TreeManager.js'
+import TreeManager from './TreeManager'
 
-import type StatementMethods from '../mixins/StatementMethods.js'
+import type StatementMethods from '../mixins/StatementMethods'
 
 class UpdateManager extends TreeManager<UpdateManager, UpdateStatement> {
   protected ctx: UpdateStatement

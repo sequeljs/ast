@@ -1,3 +1,3 @@
-import Equality from './Equality.js'
+import Equality from './Equality'
 
 export default class IsNotDistinctFrom extends Equality {}

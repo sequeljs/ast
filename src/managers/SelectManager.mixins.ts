@@ -1,7 +1,7 @@
-import CRUD from '../mixins/CRUD.js'
-import applyMixins from '../mixins/applyMixins.js'
+import CRUD from '../mixins/CRUD'
+import applyMixins from '../mixins/applyMixins'
 
-import SelectManager from './SelectManager.js'
+import SelectManager from './SelectManager'
 
 applyMixins(SelectManager, [CRUD])
 

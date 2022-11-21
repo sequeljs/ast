@@ -1,7 +1,7 @@
-import '../helper.js'
+import '../helper'
 
-import Grouping from '../../src/nodes/Grouping.js'
-import buildQuoted from '../../src/nodes/buildQuoted.js'
+import Grouping from '../../src/nodes/Grouping'
+import buildQuoted from '../../src/nodes/buildQuoted'
 
 describe('Grouping', () => {
   test('should create Equality nodes', () => {

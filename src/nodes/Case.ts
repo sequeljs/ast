@@ -1,9 +1,9 @@
-import Else from './Else.js'
-import NodeExpression from './NodeExpression.js'
-import When from './When.js'
-import buildQuoted from './buildQuoted.js'
+import Else from './Else'
+import NodeExpression from './NodeExpression'
+import When from './When'
+import buildQuoted from './buildQuoted'
 
-import type AliasPredication from '../mixins/AliasPredication.js'
+import type AliasPredication from '../mixins/AliasPredication'
 
 class Case extends NodeExpression {
   public case: any

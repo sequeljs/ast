@@ -1,7 +1,7 @@
-import Node from './Node.js'
-import Range from './Range.js'
-import Rows from './Rows.js'
-import SQLLiteral from './SQLLiteral.js'
+import Node from './Node'
+import Range from './Range'
+import Rows from './Rows'
+import SQLLiteral from './SQLLiteral'
 
 export default class Window extends Node {
   public framing: any = null

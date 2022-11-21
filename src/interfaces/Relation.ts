@@ -1,6 +1,6 @@
-import type TableAlias from '../nodes/TableAlias.js'
+import type TableAlias from '../nodes/TableAlias'
 
-import type Table from '../Table.js'
+import type Table from '../Table'
 
 type Relation = Table | TableAlias
 

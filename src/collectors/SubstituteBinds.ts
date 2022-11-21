@@ -1,10 +1,11 @@
-import type Quoter from '../interfaces/Quoter.js'
+import type Quoter from '../interfaces/Quoter'
 
-import type Binder from './Binder.js'
-import type Collector from './Collector.js'
+import type Binder from './Binder'
+import type Collector from './Collector'
 
 export default class SubstituteBinds<T extends Collector<T['value']>>
-  implements Collector<T['value']> {
+  implements Collector<T['value']>
+{
   protected readonly delegate: T
 
   protected readonly quoter: Quoter

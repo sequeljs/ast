@@ -1,6 +1,6 @@
-import NullsLast from '../nodes/NullsLast.js'
+import NullsLast from '../nodes/NullsLast'
 
-import type Visitable from '../visitors/Visitable.js'
+import type Visitable from '../visitors/Visitable'
 
 export default abstract class NullsLastPredication {
   nullsLast(this: Visitable): NullsLast {

@@ -1,4 +1,4 @@
-import Binary from './Binary.js'
+import Binary from './Binary'
 
 export default class JoinSource extends Binary {
   constructor(singleSource: any, joinop: any[] = []) {

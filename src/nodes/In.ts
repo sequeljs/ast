@@ -1,5 +1,5 @@
-import Equality from './Equality.js'
+import Equality from './Equality'
 
-import type Visitable from '../visitors/Visitable.js'
+import type Visitable from '../visitors/Visitable'
 
 export default class In extends Equality<any, Visitable | Visitable[]> {}

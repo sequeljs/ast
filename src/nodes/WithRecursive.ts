@@ -1,3 +1,3 @@
-import With from './With.js'
+import With from './With'
 
 export default class WithRecursive extends With {}

@@ -1,3 +1,3 @@
-import Binary from './Binary.js'
+import Binary from './Binary'
 
 export default class Union extends Binary {}

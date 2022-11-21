@@ -1,10 +1,10 @@
-import String from './String.base.js'
+import String from './String.base'
 
-import type AliasPredication from '../mixins/AliasPredication.js'
-import type Expressions from '../mixins/Expressions.js'
-import type OrderPredications from '../mixins/OrderPredications.js'
-import type Predications from '../mixins/Predications.js'
-import type WhenPredication from '../mixins/WhenPredication.js'
+import type AliasPredication from '../mixins/AliasPredication'
+import type Expressions from '../mixins/Expressions'
+import type OrderPredications from '../mixins/OrderPredications'
+import type Predications from '../mixins/Predications'
+import type WhenPredication from '../mixins/WhenPredication'
 
 class SQLLiteral extends String {}
 

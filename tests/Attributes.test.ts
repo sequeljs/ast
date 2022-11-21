@@ -1,16 +1,16 @@
-import './helper.js'
+import './helper'
 
-import AttributeBoolean from '../src/attributes/Boolean.js'
-import AttributeDecimal from '../src/attributes/Decimal.js'
-import AttributeFloat from '../src/attributes/Float.js'
-import AttributeInteger from '../src/attributes/Integer.js'
-import AttributeString from '../src/attributes/String.js'
-import AttributeTime from '../src/attributes/Time.js'
-import AttributeUndefined from '../src/attributes/Undefined.js'
+import AttributeBoolean from '../src/attributes/Boolean'
+import AttributeDecimal from '../src/attributes/Decimal'
+import AttributeFloat from '../src/attributes/Float'
+import AttributeInteger from '../src/attributes/Integer'
+import AttributeString from '../src/attributes/String'
+import AttributeTime from '../src/attributes/Time'
+import AttributeUndefined from '../src/attributes/Undefined'
 
-import Table from '../src/Table.js'
+import Table from '../src/Table'
 
-import attributeFor from './support/attributeFor.js'
+import attributeFor from './support/attributeFor'
 
 describe('Attributes', () => {
   test('responds to lower', () => {

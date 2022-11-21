@@ -1,4 +1,4 @@
-import BindParam from '../../src/nodes/BindParam.js'
+import BindParam from '../../src/nodes/BindParam'
 
 export default class UnboundableBindParam extends BindParam {
   isUnboundable(): boolean {

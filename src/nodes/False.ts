@@ -1,6 +1,6 @@
-import NodeExpression from './NodeExpression.js'
+import NodeExpression from './NodeExpression'
 
-import type AliasPredication from '../mixins/AliasPredication.js'
+import type AliasPredication from '../mixins/AliasPredication'
 
 class False extends NodeExpression {}
 

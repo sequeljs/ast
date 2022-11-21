@@ -1,6 +1,6 @@
-import '../helper.js'
+import '../helper'
 
-import Table from '../../src/Table.js'
+import Table from '../../src/Table'
 
 describe('Extract', () => {
   test('should extract field', () => {

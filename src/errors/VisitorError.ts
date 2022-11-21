@@ -1,3 +1,3 @@
-import SequelASTError from './SequelASTError.js'
+import SequelASTError from './SequelASTError'
 
 export default class VisitorError extends SequelASTError {}

@@ -1,8 +1,8 @@
-import NodeExpression from './NodeExpression.js'
+import NodeExpression from './NodeExpression'
 
-import type AliasPredication from '../mixins/AliasPredication.js'
+import type AliasPredication from '../mixins/AliasPredication'
 
-import type Visitable from '../visitors/Visitable.js'
+import type Visitable from '../visitors/Visitable'
 
 class Unary<T = Visitable> extends NodeExpression {
   public expr: T

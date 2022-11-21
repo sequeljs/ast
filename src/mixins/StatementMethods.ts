@@ -1,12 +1,12 @@
-import Limit from '../nodes/Limit.js'
-import Offset from '../nodes/Offset.js'
-import buildQuoted from '../nodes/buildQuoted.js'
+import Limit from '../nodes/Limit'
+import Offset from '../nodes/Offset'
+import buildQuoted from '../nodes/buildQuoted'
 
-import type DeleteStatement from '../nodes/DeleteStatement.js'
-import type UpdateStatement from '../nodes/UpdateStatement.js'
+import type DeleteStatement from '../nodes/DeleteStatement'
+import type UpdateStatement from '../nodes/UpdateStatement'
 
 export default abstract class StatementMethods<
-  S extends DeleteStatement | UpdateStatement
+  S extends DeleteStatement | UpdateStatement,
 > {
   public abstract readonly ast: S
 

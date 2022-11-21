@@ -1,13 +1,13 @@
-import DeleteStatement from '../nodes/DeleteStatement.js'
+import DeleteStatement from '../nodes/DeleteStatement'
 
-import TreeManager from './TreeManager.js'
+import TreeManager from './TreeManager'
 
-import type Relation from '../interfaces/Relation.js'
+import type Relation from '../interfaces/Relation'
 
-import type StatementMethods from '../mixins/StatementMethods.js'
+import type StatementMethods from '../mixins/StatementMethods'
 
-import type JoinSource from '../nodes/JoinSource.js'
-import type SQLLiteral from '../nodes/SQLLiteral.js'
+import type JoinSource from '../nodes/JoinSource'
+import type SQLLiteral from '../nodes/SQLLiteral'
 
 class DeleteManager extends TreeManager<DeleteManager, DeleteStatement> {
   public ctx: DeleteStatement

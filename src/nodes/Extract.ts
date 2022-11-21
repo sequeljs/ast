@@ -1,4 +1,4 @@
-import Unary from './Unary.js'
+import Unary from './Unary'
 
 export default class Extract extends Unary {
   public field: any

@@ -1,12 +1,12 @@
-import * as mod from '../../src/attributes/mod.js'
-import Attribute from '../../src/attributes/Attribute.js'
-import Boolean from '../../src/attributes/Boolean.js'
-import Decimal from '../../src/attributes/Decimal.js'
-import Float from '../../src/attributes/Float.js'
-import Integer from '../../src/attributes/Integer.js'
-import String from '../../src/attributes/String.js'
-import Time from '../../src/attributes/Time.js'
-import Undefined from '../../src/attributes/Undefined.js'
+import * as mod from '../../src/attributes/mod'
+import Attribute from '../../src/attributes/Attribute'
+import Boolean from '../../src/attributes/Boolean'
+import Decimal from '../../src/attributes/Decimal'
+import Float from '../../src/attributes/Float'
+import Integer from '../../src/attributes/Integer'
+import String from '../../src/attributes/String'
+import Time from '../../src/attributes/Time'
+import Undefined from '../../src/attributes/Undefined'
 
 test('exports from module', () => {
   expect(mod.Attribute).toStrictEqual(Attribute)

@@ -1,5 +1,5 @@
-import Binary from './Binary.js'
-import buildQuoted from './buildQuoted.js'
+import Binary from './Binary'
+import buildQuoted from './buildQuoted'
 
 export default class Matches extends Binary {
   public caseSensitive: boolean

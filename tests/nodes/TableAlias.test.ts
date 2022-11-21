@@ -1,8 +1,8 @@
-import '../helper.js'
+import '../helper'
 
-import TableAlias from '../../src/nodes/TableAlias.js'
+import TableAlias from '../../src/nodes/TableAlias'
 
-import Table from '../../src/Table.js'
+import Table from '../../src/Table'
 
 describe('TableAlias', () => {
   test('should alias name', () => {

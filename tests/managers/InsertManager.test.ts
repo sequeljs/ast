@@ -1,16 +1,16 @@
-import '../helper.js'
+import '../helper'
 
-import Engine from '../../src/interfaces/Engine.js'
+import Engine from '../../src/interfaces/Engine'
 
-import InsertManager from '../../src/managers/InsertManager.js'
-import SelectManager from '../../src/managers/SelectManager.js'
+import InsertManager from '../../src/managers/InsertManager'
+import SelectManager from '../../src/managers/SelectManager'
 
-import SQLLiteral from '../../src/nodes/SQLLiteral.js'
-import ValuesList from '../../src/nodes/ValuesList.js'
+import SQLLiteral from '../../src/nodes/SQLLiteral'
+import ValuesList from '../../src/nodes/ValuesList'
 
-import Table from '../../src/Table.js'
+import Table from '../../src/Table'
 
-import FakeRecord from '../support/FakeRecord.js'
+import FakeRecord from '../support/FakeRecord'
 
 const scope: {
   engine: Engine
@@ -258,7 +258,7 @@ describe('InsertManager', () => {
       manager.columns.push(table.get('name'))
 
       expect(manager.toSQL()).toStrictEqual(
-        `INSERT INTO "users" ("id", "name") VALUES (1, 'aaron'), (2, 'david')`
+        `INSERT INTO "users" ("id", "name") VALUES (1, 'aaron'), (2, 'david')`,
       )
     })
   })

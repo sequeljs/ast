@@ -1,6 +1,6 @@
-import ToSQL from '../../src/visitors/ToSQL.js'
+import ToSQL from '../../src/visitors/ToSQL'
 
-import FakeConnection from './FakeConnection.js'
+import FakeConnection from './FakeConnection'
 
 export default class FakeConnectionPool {
   public readonly connection: FakeConnection

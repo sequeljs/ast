@@ -1,5 +1,5 @@
-import As from '../nodes/As.js'
-import SQLLiteral from '../nodes/SQLLiteral.js'
+import As from '../nodes/As'
+import SQLLiteral from '../nodes/SQLLiteral'
 
 export default abstract class AliasPredication {
   as(other: string | SQLLiteral): As {

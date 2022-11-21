@@ -1,8 +1,8 @@
-import * as mod from '../../src/collectors/mod.js'
-import Bind from '../../src/collectors/Bind.js'
-import Composite from '../../src/collectors/Composite.js'
-import SQLString from '../../src/collectors/SQLString.js'
-import SubstituteBinds from '../../src/collectors/SubstituteBinds.js'
+import * as mod from '../../src/collectors/mod'
+import Bind from '../../src/collectors/Bind'
+import Composite from '../../src/collectors/Composite'
+import SQLString from '../../src/collectors/SQLString'
+import SubstituteBinds from '../../src/collectors/SubstituteBinds'
 
 test('exports from module', () => {
   expect(mod.Bind).toStrictEqual(Bind)

@@ -1,19 +1,19 @@
-import './helper.js'
+import './helper'
 
-import EmptyJoinError from '../src/errors/EmptyJoinError.js'
+import EmptyJoinError from '../src/errors/EmptyJoinError'
 
-import InsertManager from '../src/managers/InsertManager.js'
-import TreeManager from '../src/managers/TreeManager.js'
+import InsertManager from '../src/managers/InsertManager'
+import TreeManager from '../src/managers/TreeManager'
 
-import FullOuterJoin from '../src/nodes/FullOuterJoin.js'
-import InnerJoin from '../src/nodes/InnerJoin.js'
-import OuterJoin from '../src/nodes/OuterJoin.js'
-import RightOuterJoin from '../src/nodes/RightOuterJoin.js'
-import SQLLiteral from '../src/nodes/SQLLiteral.js'
-import StringJoin from '../src/nodes/StringJoin.js'
+import FullOuterJoin from '../src/nodes/FullOuterJoin'
+import InnerJoin from '../src/nodes/InnerJoin'
+import OuterJoin from '../src/nodes/OuterJoin'
+import RightOuterJoin from '../src/nodes/RightOuterJoin'
+import SQLLiteral from '../src/nodes/SQLLiteral'
+import StringJoin from '../src/nodes/StringJoin'
 
-import Table from '../src/Table.js'
-import { TableAlias } from '../src/nodes/mod.js'
+import Table from '../src/Table'
+import { TableAlias } from '../src/nodes/mod'
 
 const scope: {
   relation: Table

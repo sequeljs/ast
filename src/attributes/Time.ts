@@ -1,4 +1,4 @@
-import Attribute from './Attribute.js'
+import Attribute from './Attribute'
 
 /**
  * @category Attributes

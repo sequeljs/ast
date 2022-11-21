@@ -1,7 +1,7 @@
-import NodeExpression from './NodeExpression.js'
-import SelectCore from './SelectCore.js'
+import NodeExpression from './NodeExpression'
+import SelectCore from './SelectCore'
 
-import type AliasPredication from '../mixins/AliasPredication.js'
+import type AliasPredication from '../mixins/AliasPredication'
 
 class SelectStatement extends NodeExpression {
   public readonly cores: SelectCore[]

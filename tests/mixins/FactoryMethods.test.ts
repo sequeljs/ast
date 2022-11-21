@@ -1,13 +1,13 @@
-import '../helper.js'
+import '../helper'
 
-import FactoryMethods from '../../src/mixins/FactoryMethods.js'
-import applyMixins from '../../src/mixins/applyMixins.js'
+import FactoryMethods from '../../src/mixins/FactoryMethods'
+import applyMixins from '../../src/mixins/applyMixins'
 
-import False from '../../src/nodes/False.js'
-import Join from '../../src/nodes/Join.js'
-import NamedSQLFunction from '../../src/nodes/NamedSQLFunction.js'
-import On from '../../src/nodes/On.js'
-import True from '../../src/nodes/True.js'
+import False from '../../src/nodes/False'
+import Join from '../../src/nodes/Join'
+import NamedSQLFunction from '../../src/nodes/NamedSQLFunction'
+import On from '../../src/nodes/On'
+import True from '../../src/nodes/True'
 
 class Factory {}
 

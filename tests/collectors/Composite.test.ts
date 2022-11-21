@@ -1,21 +1,21 @@
-import '../helper.js'
+import '../helper'
 
-import Bind from '../../src/collectors/Bind.js'
-import Composite from '../../src/collectors/Composite.js'
-import SQLString from '../../src/collectors/SQLString.js'
+import Bind from '../../src/collectors/Bind'
+import Composite from '../../src/collectors/Composite'
+import SQLString from '../../src/collectors/SQLString'
 
-import SelectManager from '../../src/managers/SelectManager.js'
+import SelectManager from '../../src/managers/SelectManager'
 
-import BindParam from '../../src/nodes/BindParam.js'
+import BindParam from '../../src/nodes/BindParam'
 
-import ToSQL from '../../src/visitors/ToSQL.js'
-import Visitable from '../../src/visitors/Visitable.js'
+import ToSQL from '../../src/visitors/ToSQL'
+import Visitable from '../../src/visitors/Visitable'
 
-import Table from '../../src/Table.js'
+import Table from '../../src/Table'
 
-import type SelectStatement from '../../src/nodes/SelectStatement.js'
+import type SelectStatement from '../../src/nodes/SelectStatement'
 
-import FakeRecord from '../support/FakeRecord.js'
+import FakeRecord from '../support/FakeRecord'
 
 const connection = new FakeRecord()
 const visitor = new ToSQL(connection.connection)

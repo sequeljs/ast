@@ -1,6 +1,6 @@
-import Unary from './Unary.js'
+import Unary from './Unary'
 
-import type ValuesListRow from './ValuesListRow.js'
+import type ValuesListRow from './ValuesListRow'
 
 export default class ValuesList extends Unary<ValuesListRow[]> {
   get rows(): Unary<ValuesListRow[]>['expr'] {

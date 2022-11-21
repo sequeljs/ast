@@ -1,4 +1,4 @@
-import Concat from '../nodes/Concat.js'
+import Concat from '../nodes/Concat'
 
 export default abstract class ConcatPredication {
   concat(other: any): Concat {

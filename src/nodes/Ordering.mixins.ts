@@ -1,8 +1,8 @@
-import NullsFirstPredication from '../mixins/NullsFirstPredication.js'
-import NullsLastPredication from '../mixins/NullsLastPredication.js'
-import applyMixins from '../mixins/applyMixins.js'
+import NullsFirstPredication from '../mixins/NullsFirstPredication'
+import NullsLastPredication from '../mixins/NullsLastPredication'
+import applyMixins from '../mixins/applyMixins'
 
-import Ordering from './Ordering.js'
+import Ordering from './Ordering'
 
 applyMixins(Ordering, [NullsFirstPredication, NullsLastPredication])
 

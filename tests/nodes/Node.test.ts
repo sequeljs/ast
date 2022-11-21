@@ -1,11 +1,11 @@
-import '../helper.js'
+import '../helper'
 
-import EngineNotSetError from '../../src/errors/EngineNotSetError.js'
-import VisitorNotSetError from '../../src/errors/VisitorNotSetError.js'
+import EngineNotSetError from '../../src/errors/EngineNotSetError'
+import VisitorNotSetError from '../../src/errors/VisitorNotSetError'
 
-import Node from '../../src/nodes/Node.js'
+import Node from '../../src/nodes/Node'
 
-import SequelAST from '../../src/SequelAST.js'
+import SequelAST from '../../src/SequelAST'
 
 describe('Not', () => {
   describe('toSQL', () => {

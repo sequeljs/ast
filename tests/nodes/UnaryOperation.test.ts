@@ -1,9 +1,9 @@
-import '../helper.js'
+import '../helper'
 
-import As from '../../src/nodes/As.js'
-import Descending from '../../src/nodes/Descending.js'
-import SQLLiteral from '../../src/nodes/SQLLiteral.js'
-import UnaryOperation from '../../src/nodes/UnaryOperation.js'
+import As from '../../src/nodes/As'
+import Descending from '../../src/nodes/Descending'
+import SQLLiteral from '../../src/nodes/SQLLiteral'
+import UnaryOperation from '../../src/nodes/UnaryOperation'
 
 describe('UnaryOperation', () => {
   test('construct', () => {

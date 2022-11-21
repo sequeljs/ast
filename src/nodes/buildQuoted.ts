@@ -1,15 +1,15 @@
 /** @internal */ /** */
 
-import Attribute from '../attributes/Attribute.js'
+import Attribute from '../attributes/Attribute'
 
-import SelectManager from '../managers/SelectManager.js'
+import SelectManager from '../managers/SelectManager'
 
-import Table from '../Table.js'
+import Table from '../Table'
 
-import Casted from './Casted.js'
-import Node from './Node.js'
-import Quoted from './Quoted.js'
-import SQLLiteral from './SQLLiteral.js'
+import Casted from './Casted'
+import Node from './Node'
+import Quoted from './Quoted'
+import SQLLiteral from './SQLLiteral'
 
 function buildQuoted(other: Attribute, attribute: any): Attribute
 function buildQuoted(other: Node, attribute: any): Node

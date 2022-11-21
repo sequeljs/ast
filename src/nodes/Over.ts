@@ -1,6 +1,6 @@
-import Binary from './Binary.js'
+import Binary from './Binary'
 
-import type AliasPredication from '../mixins/AliasPredication.js'
+import type AliasPredication from '../mixins/AliasPredication'
 
 class Over extends Binary {
   public readonly operator = 'OVER'

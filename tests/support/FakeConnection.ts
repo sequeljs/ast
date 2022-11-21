@@ -1,8 +1,8 @@
-import type Connection from '../../src/interfaces/Connection.js'
+import type Connection from '../../src/interfaces/Connection'
 
-import type Visitor from '../../src/visitors/Visitor.js'
+import type Visitor from '../../src/visitors/Visitor'
 
-import { quote, quoteColumnName, quoteTableName } from './quote.js'
+import { quote, quoteColumnName, quoteTableName } from './quote'
 
 export default class FakeConnection implements Connection {
   public readonly tables: string[]

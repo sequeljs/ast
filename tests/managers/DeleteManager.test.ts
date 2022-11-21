@@ -1,8 +1,8 @@
-import '../helper.js'
+import '../helper'
 
-import DeleteManager from '../../src/managers/DeleteManager.js'
+import DeleteManager from '../../src/managers/DeleteManager'
 
-import Table from '../../src/Table.js'
+import Table from '../../src/Table'
 
 describe('DeleteManager', () => {
   describe('from', () => {

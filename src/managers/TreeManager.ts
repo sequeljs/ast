@@ -1,15 +1,15 @@
-import SQLString from '../collectors/SQLString.js'
+import SQLString from '../collectors/SQLString'
 
-import EngineNotSetError from '../errors/EngineNotSetError.js'
-import VisitorNotSetError from '../errors/VisitorNotSetError.js'
+import EngineNotSetError from '../errors/EngineNotSetError'
+import VisitorNotSetError from '../errors/VisitorNotSetError'
 
-import SequelAST from '../SequelAST.js'
+import SequelAST from '../SequelAST'
 
-import type Engine from '../interfaces/Engine.js'
+import type Engine from '../interfaces/Engine'
 
-import type FactoryMethods from '../mixins/FactoryMethods.js'
+import type FactoryMethods from '../mixins/FactoryMethods'
 
-import type Statement from '../nodes/Statement.js'
+import type Statement from '../nodes/Statement'
 
 abstract class TreeManager<M extends TreeManager<M, S>, S extends Statement> {
   public readonly ast: S

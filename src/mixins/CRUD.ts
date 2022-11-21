@@ -1,11 +1,11 @@
-import DeleteManager from '../managers/DeleteManager.js'
-import InsertManager from '../managers/InsertManager.js'
-import UpdateManager from '../managers/UpdateManager.js'
+import DeleteManager from '../managers/DeleteManager'
+import InsertManager from '../managers/InsertManager'
+import UpdateManager from '../managers/UpdateManager'
 
-import SQLLiteral from '../nodes/SQLLiteral.js'
+import SQLLiteral from '../nodes/SQLLiteral'
 
-import type SelectCore from '../nodes/SelectCore.js'
-import type SelectStatement from '../nodes/SelectStatement.js'
+import type SelectCore from '../nodes/SelectCore'
+import type SelectStatement from '../nodes/SelectStatement'
 
 export default abstract class CRUD {
   public abstract readonly ast: SelectStatement

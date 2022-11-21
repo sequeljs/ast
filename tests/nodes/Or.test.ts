@@ -1,10 +1,10 @@
-import '../helper.js'
+import '../helper'
 
-import Or from '../../src/nodes/Or.js'
+import Or from '../../src/nodes/Or'
 
-import Table from '../../src/Table.js'
+import Table from '../../src/Table'
 
-import type Equality from '../../src/nodes/Equality.js'
+import type Equality from '../../src/nodes/Equality'
 
 describe('Or', () => {
   describe('or', () => {

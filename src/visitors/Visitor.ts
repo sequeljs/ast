@@ -1,11 +1,11 @@
-import Attribute from '../attributes/Attribute.js'
+import Attribute from '../attributes/Attribute'
 
-import VisitorError from '../errors/VisitorError.js'
+import VisitorError from '../errors/VisitorError'
 
-import type Collector from '../collectors/Collector.js'
+import type Collector from '../collectors/Collector'
 
-import type VisitFunction from './VisitFunction.js'
-import type Visitable from './Visitable.js'
+import type VisitFunction from './VisitFunction'
+import type Visitable from './Visitable'
 
 export default abstract class Visitor {
   accept<T extends Collector<T['value']>>(
@@ -51,9 +51,8 @@ export default abstract class Visitor {
       objectType !== '' &&
       `visit${objectType}` in this.constructor.prototype
     ) {
-      const visitFunction: VisitFunction<T> = this.constructor.prototype[
-        `visit${objectType}`
-      ].bind(this)
+      const visitFunction: VisitFunction<T> =
+        this.constructor.prototype[`visit${objectType}`].bind(this)
 
       return visitFunction(object, collector) as T
     }

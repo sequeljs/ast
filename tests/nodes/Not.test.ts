@@ -1,8 +1,8 @@
-import '../helper.js'
+import '../helper'
 
-import Not from '../../src/nodes/Not.js'
+import Not from '../../src/nodes/Not'
 
-import Table from '../../src/Table.js'
+import Table from '../../src/Table'
 
 describe('Not', () => {
   describe('not', () => {

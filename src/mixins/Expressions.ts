@@ -1,9 +1,9 @@
-import Avg from '../nodes/Avg.js'
-import Count from '../nodes/Count.js'
-import Extract from '../nodes/Extract.js'
-import Max from '../nodes/Max.js'
-import Min from '../nodes/Min.js'
-import Sum from '../nodes/Sum.js'
+import Avg from '../nodes/Avg'
+import Count from '../nodes/Count'
+import Extract from '../nodes/Extract'
+import Max from '../nodes/Max'
+import Min from '../nodes/Min'
+import Sum from '../nodes/Sum'
 
 export default abstract class Expressions {
   average(): Avg {

@@ -1,11 +1,11 @@
-import And from '../nodes/And.js'
-import Grouping from '../nodes/Grouping.js'
-import Not from '../nodes/Not.js'
-import Or from '../nodes/Or.js'
+import And from '../nodes/And'
+import Grouping from '../nodes/Grouping'
+import Not from '../nodes/Not'
+import Or from '../nodes/Or'
 
-import type Node from '../nodes/Node.js'
+import type Node from '../nodes/Node'
 
-import type Visitable from '../visitors/Visitable.js'
+import type Visitable from '../visitors/Visitable'
 
 export default abstract class NodeMethods {
   and(right: any): And {

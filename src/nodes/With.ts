@@ -1,4 +1,4 @@
-import Unary from './Unary.js'
+import Unary from './Unary'
 
 export default class With extends Unary {
   get children(): any {

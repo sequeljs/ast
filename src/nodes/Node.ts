@@ -1,14 +1,14 @@
-import SQLString from '../collectors/SQLString.js'
+import SQLString from '../collectors/SQLString'
 
-import EngineNotSetError from '../errors/EngineNotSetError.js'
-import VisitorNotSetError from '../errors/VisitorNotSetError.js'
+import EngineNotSetError from '../errors/EngineNotSetError'
+import VisitorNotSetError from '../errors/VisitorNotSetError'
 
-import SequelAST from '../SequelAST.js'
+import SequelAST from '../SequelAST'
 
-import type Engine from '../interfaces/Engine.js'
+import type Engine from '../interfaces/Engine'
 
-import type FactoryMethods from '../mixins/FactoryMethods.js'
-import type NodeMethods from '../mixins/NodeMethods.js'
+import type FactoryMethods from '../mixins/FactoryMethods'
+import type NodeMethods from '../mixins/NodeMethods'
 
 class Node {
   private readonly __sequelASTUnquotable = true

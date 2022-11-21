@@ -1,19 +1,19 @@
-import Limit from '../nodes/Limit.js'
-import SQLLiteral from '../nodes/SQLLiteral.js'
-import Union from '../nodes/Union.js'
+import Limit from '../nodes/Limit'
+import SQLLiteral from '../nodes/SQLLiteral'
+import Union from '../nodes/Union'
 
-import ToSQL from './ToSQL.js'
+import ToSQL from './ToSQL'
 
-import type Collector from '../collectors/Collector.js'
+import type Collector from '../collectors/Collector'
 
-import type Bin from '../nodes/Bin.js'
-import type Concat from '../nodes/Concat.js'
-import type IsDistinctFrom from '../nodes/IsDistinctFrom.js'
-import type IsNotDistinctFrom from '../nodes/IsNotDistinctFrom.js'
-import type SelectCore from '../nodes/SelectCore.js'
-import type SelectStatement from '../nodes/SelectStatement.js'
-import type UnqualifiedColumn from '../nodes/UnqualifiedColumn.js'
-import type UpdateStatement from '../nodes/UpdateStatement.js'
+import type Bin from '../nodes/Bin'
+import type Concat from '../nodes/Concat'
+import type IsDistinctFrom from '../nodes/IsDistinctFrom'
+import type IsNotDistinctFrom from '../nodes/IsNotDistinctFrom'
+import type SelectCore from '../nodes/SelectCore'
+import type SelectStatement from '../nodes/SelectStatement'
+import type UnqualifiedColumn from '../nodes/UnqualifiedColumn'
+import type UpdateStatement from '../nodes/UpdateStatement'
 
 export default class MySQL extends ToSQL {
   protected visitBin(thing: Bin, col: Collector): Collector {

@@ -1,7 +1,7 @@
-import NodeExpression from './NodeExpression.js'
-import SQLLiteral from './SQLLiteral.js'
+import NodeExpression from './NodeExpression'
+import SQLLiteral from './SQLLiteral'
 
-import type WindowPredication from '../mixins/WindowPredication.js'
+import type WindowPredication from '../mixins/WindowPredication'
 
 class SQLFunction extends NodeExpression {
   public alias: SQLLiteral | null = null
