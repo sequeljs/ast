@@ -34,7 +34,7 @@
     "src"
   ],
   "devDependencies": {
-    "@commitlint/cli": "17.5.0",
+    "@commitlint/cli": "17.5.1",
     "@commitlint/config-conventional": "17.4.4",
     "@swc/core": "1.3.42",
     "@swc/jest": "0.2.24",
