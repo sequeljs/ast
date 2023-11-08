@@ -1,0 +1,4 @@
+{
+  "*": ["prettier --ignore-unknown --write"],
+  "*.(j|t)s?(x)": ["eslint"]
+}

@@ -11,6 +11,7 @@ import type SelectPredications from './mixins/SelectPredications'
 
 import type Visitable from './visitors/Visitable'
 
+// eslint-disable-next-line @typescript-eslint/no-unsafe-declaration-merging
 class Table implements TypeCaster {
   public name: string
 
@@ -60,6 +61,7 @@ class Table implements TypeCaster {
   }
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unsafe-declaration-merging
 interface Table extends CRUD, FactoryMethods, SelectPredications {}
 
 export default Table
