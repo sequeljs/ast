@@ -7,19 +7,23 @@ updates:
     schedule:
       interval: daily
     commit-message:
-      prefix: "ci(ghactions): "
+      prefix: 'ci(ghactions): '
 
   - package-ecosystem: npm
     directory: /
     schedule:
       interval: daily
     commit-message:
-      prefix: "chore(dep): "
-      prefix-development: "chore(devdep): "
+      prefix: 'chore(dep): '
+      prefix-development: 'chore(devdep): '
+    groups:
+      typescript-eslint:
+        patterns:
+          - '@typescript-eslint*'
 
   - package-ecosystem: docker
     directory: /.devcontainer/
     schedule:
       interval: daily
     commit-message:
-      prefix: "build(docker): "
+      prefix: 'build(docker): '
