@@ -54,7 +54,7 @@
     "rimraf": "5.0.7",
     "ts-jest": "29.1.5",
     "typedoc": "0.26.3",
-    "typescript": "5.5.2"
+    "typescript": "5.5.3"
   },
   "scripts": {
     "build": "npm run build:cjs && npm run build:es && npm run build:types",
