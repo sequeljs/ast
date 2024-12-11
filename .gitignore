@@ -8,7 +8,7 @@
 ### Build ###
 dist
 docs
-graphs
+dependency-tree.svg
 
 ### Node.js ###
 *.log
