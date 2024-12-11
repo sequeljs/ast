@@ -1,7 +1,1 @@
-#!/usr/bin/env sh
-# Called by "git commit" with no arguments. The hook should exit with non-zero
-# status after issuing an appropriate message if it wants to stop the commit.
-
-. "$(dirname -- "$0")/_/husky.sh"
-
 npx --no -- lint-staged
